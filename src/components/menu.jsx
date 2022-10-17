@@ -14,7 +14,7 @@ function Menu() {
             <MagnifyingGlassCircleIcon className="transform translate-z-0 h-7 w-7" />
           }
         >
-          Записки
+          Заметки
         </IconWithButton>
       </Button>
       <Button href="/">

@@ -12,7 +12,7 @@ function CreateNote() {
     <div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">
-          Написать записку
+          Написать заметку
         </h2>
         <CheckBox
           className="justify-self-center lg:justify-self-end"
@@ -22,11 +22,11 @@ function CreateNote() {
         />
       </div>
 
-      <div className="w-full md">
-        <ReactMarkdown className={!preview ? "hidden" : ""}>
-          {text}
-        </ReactMarkdown>
-      </div>
+      {preview && (
+        <div className="w-full md">
+          <ReactMarkdown>{text}</ReactMarkdown>
+        </div>
+      )}
 
       <textarea
         className={`
@@ -54,7 +54,7 @@ function CreateNote() {
           ${preview ? "hidden" : ""}
         `}
         rows="10"
-        placeholder="Ваша записка начинается здесь. Можно использовать markdown..."
+        placeholder="Ваша заметка начинается здесь. Можно использовать markdown..."
         maxLength={5000}
         onChange={(e) => {
           setText(e.target.value);
@@ -63,7 +63,7 @@ function CreateNote() {
       <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-full">
         <CheckBox
           className="justify-self-center lg:justify-self-start"
-          label="Публичная записка"
+          label="Публичная заметка"
           id="public"
           onClick={""}
           checked
