@@ -5,7 +5,7 @@ function CheckBox(props) {
         className="form-check-input appearance-none h-3 w-5 checked:bg-blue-600 checked:border-blue-600 pr-3 border border-gray-300 rounded-lg mr-1"
         type="checkbox"
         id={props.id}
-        defaultChecked={true}
+        defaultChecked={props.checked}
         onClick={props.onClick}
       />
       <label className="form-check-label inline-block" htmlFor={props.id}>
