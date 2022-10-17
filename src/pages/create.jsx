@@ -1,10 +1,11 @@
 import { ButtonWithAction, IconWithButton } from "../components/button";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
+import { CheckBox } from "../components/checkbox";
 
 function CreateNote() {
   return (
     <div>
-      <h2 className="font-medium leading-tight text-4xl mt-0 mb-2">
+      <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">
         Написать записку
       </h2>
       <textarea
@@ -35,18 +36,25 @@ function CreateNote() {
         placeholder="Ваша записка начинается здесь..."
         maxLength={5000}
       ></textarea>
-      <div className="grid grid-cols-2 justify-items-end w-full">
-        <ButtonWithAction className="m-5" onClick={""}>
-          <IconWithButton
-            reverse={true}
-            icon={
-              <ChevronDoubleRightIcon className="transform translate-z-0 h-7 w-7" />
-            }
-          >
-            Отправить
-          </IconWithButton>
-        </ButtonWithAction>
-        <div className=""></div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-full">
+        <CheckBox
+          className="justify-self-center lg:justify-self-start"
+          label="Публичная записка"
+          id="public"
+          onClick={""}
+        />
+        <div className="justify-self-center lg:justify-self-end">
+          <ButtonWithAction className="m-5" onClick={""}>
+            <IconWithButton
+              reverse={true}
+              icon={
+                <ChevronDoubleRightIcon className="transform translate-z-0 h-7 w-7" />
+              }
+            >
+              Отправить
+            </IconWithButton>
+          </ButtonWithAction>
+        </div>
       </div>
     </div>
   );
