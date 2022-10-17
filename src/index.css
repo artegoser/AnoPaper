@@ -1,3 +1,81 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* styles for displaying markdown */
+@layer base {
+  .md h1 {
+    @apply text-6xl;
+  }
+  .md h2 {
+    @apply text-5xl;
+  }
+  .md h3 {
+    @apply text-4xl;
+  }
+  .md h4 {
+    @apply text-3xl;
+  }
+  .md h5 {
+    @apply text-2xl;
+  }
+  .md h6 {
+    @apply text-xl;
+  }
+
+  .md blockquote{
+    @apply border-l-4;
+    @apply pl-2;
+    @apply rounded-lg;
+    @apply bg-zinc-200;
+    @apply border-zinc-400;
+
+    @apply dark:bg-zinc-800;
+    @apply dark:border-zinc-600;
+  }
+
+  .md hr {
+    @apply mb-4;
+    @apply mt-4;
+    @apply border-2;
+    @apply rounded-lg;
+  }
+
+  .md ul{
+    @apply list-disc;
+    @apply list-inside;
+  }
+
+  .md li ul {
+    @apply list-disc;
+    @apply list-inside;
+    @apply ml-2;
+  }
+
+  .md ol{
+    @apply list-decimal;
+    @apply list-inside;
+  }
+
+  .md li ol{
+    @apply list-decimal;
+    @apply list-inside;
+    @apply ml-2;
+  }
+
+  .md code {
+    @apply p-1;
+    @apply rounded-lg;
+    @apply bg-zinc-200;
+    @apply border-zinc-400;
+
+    @apply dark:bg-zinc-800;
+    @apply dark:border-zinc-600;
+  }
+
+  .md a {
+    @apply inline-block bg-transparent text-blue-600;
+  }
+
+}

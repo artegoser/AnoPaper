@@ -22,9 +22,11 @@ function CreateNote() {
         />
       </div>
 
-      <ReactMarkdown className={!preview ? "w-full hidden" : "w-full"}>
-        {text}
-      </ReactMarkdown>
+      <div className="w-full md">
+        <ReactMarkdown className={!preview ? "hidden" : ""}>
+          {text}
+        </ReactMarkdown>
+      </div>
 
       <textarea
         className={`
