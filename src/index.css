@@ -25,53 +25,36 @@
   }
 
   .md blockquote{
-    @apply border-l-4;
-    @apply pl-2;
-    @apply rounded-lg;
-    @apply bg-zinc-200;
-    @apply border-zinc-400;
-
-    @apply dark:bg-zinc-800;
-    @apply dark:border-zinc-600;
+    @apply border-l-4 pl-2 rounded-lg;
+    @apply bg-zinc-200 border-zinc-400;
+    @apply dark:bg-zinc-800 dark:border-zinc-600;
   }
 
   .md hr {
-    @apply mb-4;
-    @apply mt-4;
-    @apply border-2;
-    @apply rounded-lg;
+    @apply mb-4 mt-4 border-2 rounded-lg;
   }
 
   .md ul{
-    @apply list-disc;
-    @apply list-inside;
+    @apply list-disc list-inside;
   }
 
   .md li ul {
-    @apply list-disc;
-    @apply list-inside;
-    @apply ml-2;
+    @apply list-disc list-inside ml-2;
   }
 
   .md ol{
-    @apply list-decimal;
-    @apply list-inside;
+    @apply list-decimal list-inside;
   }
 
   .md li ol{
-    @apply list-decimal;
-    @apply list-inside;
-    @apply ml-2;
+    @apply list-decimal list-inside ml-2;
   }
 
   .md code {
     @apply p-1;
     @apply rounded-lg;
-    @apply bg-zinc-200;
-    @apply border-zinc-400;
-
-    @apply dark:bg-zinc-800;
-    @apply dark:border-zinc-600;
+    @apply bg-zinc-200 border-zinc-400;
+    @apply dark:bg-zinc-800 dark:border-zinc-600;
   }
 
   .md a {
