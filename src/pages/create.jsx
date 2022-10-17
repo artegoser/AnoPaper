@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 
 function CreateNote() {
   const [preview, setPreview] = useState(false);
+  const [publicState, setPublicState] = useState(true);
   const [text, setText] = useState("");
 
   return (
@@ -65,7 +66,9 @@ function CreateNote() {
           className="justify-self-center lg:justify-self-start"
           label="Публичная заметка"
           id="public"
-          onClick={""}
+          onClick={() => {
+            setPublicState(!publicState);
+          }}
           checked
         />
         <div className="justify-self-center lg:justify-self-end">
