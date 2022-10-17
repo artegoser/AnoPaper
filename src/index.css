@@ -61,4 +61,7 @@
     @apply inline-block bg-transparent text-blue-600;
   }
 
+  .md img {
+    @apply transition-transform w-96 ease-[cubic-bezier(.69,.58,.32,1.69)] hover:scale-105 rounded-2xl;
+  }
 }
