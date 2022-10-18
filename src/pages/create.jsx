@@ -62,6 +62,7 @@ function CreateNote() {
         <CheckBox
           className="justify-self-center lg:justify-self-start"
           label="Публичная заметка"
+          title="Если включено, то заметка будет видна всем пользователям"
           id="public"
           onClick={() => {
             setPublicState(!publicState);

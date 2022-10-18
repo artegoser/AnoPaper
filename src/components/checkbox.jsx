@@ -7,8 +7,13 @@ function CheckBox(props) {
         id={props.id}
         defaultChecked={props.checked}
         onClick={props.onClick}
+        title={props.title}
       />
-      <label className="form-check-label inline-block" htmlFor={props.id}>
+      <label
+        title={props.title}
+        className="form-check-label inline-block"
+        htmlFor={props.id}
+      >
         {props.label}
       </label>
     </div>
