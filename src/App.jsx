@@ -4,6 +4,12 @@ import Menu from "./components/menu";
 import CreateNote from "./pages/create";
 
 function App() {
+  Storage.prototype.setObj = function (key, obj) {
+    return this.setItem(key, JSON.stringify(obj));
+  };
+  Storage.prototype.getObj = function (key) {
+    return JSON.parse(this.getItem(key));
+  };
   return (
     <div className="grid grid-cols-4  lg:grid-cols-5  gap-10 text-black dark:text-white">
       <Menu />

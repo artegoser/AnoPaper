@@ -3,6 +3,7 @@ import {
   MagnifyingGlassCircleIcon,
   PencilIcon,
   ExclamationCircleIcon,
+  Cog6ToothIcon,
 } from "@heroicons/react/24/outline";
 
 function Menu() {
@@ -31,6 +32,13 @@ function Menu() {
           }
         >
           Подробнее
+        </IconWithButton>
+      </Button>
+      <Button href="/options">
+        <IconWithButton
+          icon={<Cog6ToothIcon className="transform translate-z-0 h-7 w-7" />}
+        >
+          Настройки
         </IconWithButton>
       </Button>
     </div>

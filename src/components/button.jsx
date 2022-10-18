@@ -14,12 +14,14 @@ function Button(props) {
 
 function ButtonWithAction(props) {
   return (
-    <div
-      onClick={props.onClick}
-      className={`transition-transform w-48 ease-[cubic-bezier(.69,.58,.32,1.69)] hover:scale-105  p-2 pl-6 text-lg bg-zinc-100 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-800 rounded-2xl ${props.className}`}
-    >
-      {props.children}
-    </div>
+    <Link to="#">
+      <div
+        onClick={props.onClick}
+        className={`transition-transform w-48 ease-[cubic-bezier(.69,.58,.32,1.69)] hover:scale-105  p-2 pl-6 text-lg bg-zinc-100 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-800 rounded-2xl ${props.className}`}
+      >
+        {props.children}
+      </div>
+    </Link>
   );
 }
 

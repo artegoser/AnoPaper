@@ -7,8 +7,10 @@ import ReactMarkdown from "react-markdown";
 function CreateNote() {
   const [preview, setPreview] = useState(false);
   const [publicState, setPublicState] = useState(true);
-  const [text, setText] = useState("");
+  const [text, setText] = useState(localStorage.getItem("NoteText"));
+  const [name, setName] = useState(localStorage.getItem("NoteName"));
 
+  let inputStyle = `form-control block px-3 py-1.5 text-base font-normal text-gray-700 dark:text-white bg-white dark:bg-zinc-900 bg-clip-padding border border-solid border-gray-300 rounded-lg transition ease-in-out focus:border-blue-600 focus:outline-none`;
   return (
     <div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -23,44 +25,39 @@ function CreateNote() {
         />
       </div>
 
-      {preview && (
-        <div className="w-full md">
-          <ReactMarkdown>{text}</ReactMarkdown>
-        </div>
-      )}
-
+      <input
+        type="text"
+        className={`mb-2 md:w-1/6 w-full ${inputStyle}`}
+        placeholder="Название заметки..."
+        value={localStorage.getItem("NoteName")}
+        onChange={(e) => {
+          localStorage.setItem("NoteName", e.target.value);
+          setName(e.target.value);
+        }}
+      />
       <textarea
         className={`
-          form-control
-          block
+          ${inputStyle}
           w-full
-          px-3
-          py-1.5
-          text-base
-          font-normal
-        text-gray-700
-        dark:text-white
-        bg-white 
-        dark:bg-zinc-900
-          bg-clip-padding
-          border 
-          border-solid 
-        border-gray-300
-          rounded-lg
-          transition
-          ease-in-out
-          m-0
-        focus:border-blue-600 
-          focus:outline-none
           ${preview ? "hidden" : ""}
         `}
         rows="10"
         placeholder="Ваша заметка начинается здесь. Можно использовать markdown..."
         maxLength={5000}
         onChange={(e) => {
+          localStorage.setItem("NoteText", e.target.value);
           setText(e.target.value);
         }}
-      ></textarea>
+      >
+        {localStorage.getItem("NoteText")}
+      </textarea>
+
+      {preview && (
+        <div className="w-full md">
+          <ReactMarkdown>{text}</ReactMarkdown>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-full">
         <CheckBox
           className="justify-self-center lg:justify-self-start"
@@ -69,7 +66,7 @@ function CreateNote() {
           onClick={() => {
             setPublicState(!publicState);
           }}
-          checked
+          checked={localStorage.getItem("private")}
         />
         <div className="justify-self-center lg:justify-self-end">
           <ButtonWithAction className="m-5" onClick={""}>
