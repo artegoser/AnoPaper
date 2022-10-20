@@ -15,8 +15,6 @@ function Note() {
   }, []);
 
   if (note) {
-    console.log(note);
-
     return (
       <div className="">
         <Button className="mb-4" href="/notes">

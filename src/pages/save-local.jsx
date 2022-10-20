@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NotePlaceholder from "../components/notePlaceholder";
 
@@ -33,7 +33,7 @@ function Save() {
       localStorage.removeItem("NoteName");
       localStorage.removeItem("NoteText");
 
-      navigate(`/notes/${id}`);
+      navigate(`/notes/${id}`, { replace: true });
     }
   }, []);
 

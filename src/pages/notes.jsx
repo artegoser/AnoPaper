@@ -10,7 +10,6 @@ function Notes() {
           return b[1].time - a[1].time;
         })
         .map((val) => {
-          console.log(val[1]);
           return (
             <div className="grid grid-cols-1 lg:grid-cols-2 border border-blue-300 rounded-lg m-2 p-2 justify-items-start">
               <div className="font-medium leading-tight text-4xl mt-0 mb-2">
