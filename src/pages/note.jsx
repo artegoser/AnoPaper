@@ -1,5 +1,4 @@
 import ReactMarkdown from "react-markdown";
-import NotePlaceholder from "../components/notePlaceholder";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import printDate from "../components/utils";
@@ -41,9 +40,9 @@ function Note() {
         </div>
       </div>
     );
+  } else {
+    return <div />;
   }
-
-  return <NotePlaceholder />;
 }
 
 export default Note;
