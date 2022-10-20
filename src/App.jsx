@@ -4,6 +4,7 @@ import Menu from "./components/menu";
 import CreateNote from "./pages/create";
 import Save from "./pages/save-local";
 import Note from "./pages/note";
+import Notes from "./pages/notes";
 
 function App() {
   Storage.prototype.setObj = function (key, obj) {
@@ -24,10 +25,7 @@ function App() {
             path="/about"
             element={<div className="col-span-4">О сервисе</div>}
           />
-          <Route
-            path="/notes"
-            element={<div className="col-span-4">Заметки</div>}
-          />
+          <Route path="/notes" element={<Notes />} />
         </Routes>
       </div>
     </div>
