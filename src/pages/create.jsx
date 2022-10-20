@@ -1,4 +1,4 @@
-import { ButtonWithAction, IconWithButton } from "../components/button";
+import { Button, IconWithButton } from "../components/button";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import { CheckBox } from "../components/checkbox";
 import { useState } from "react";
@@ -29,7 +29,7 @@ function CreateNote() {
         type="text"
         className={`mb-2 md:w-1/6 w-full ${inputStyle}`}
         placeholder="Название заметки..."
-        value={localStorage.getItem("NoteName")}
+        value={localStorage.getItem("NoteName") || ""}
         onChange={(e) => {
           localStorage.setItem("NoteName", e.target.value);
           setName(e.target.value);
@@ -48,9 +48,8 @@ function CreateNote() {
           localStorage.setItem("NoteText", e.target.value);
           setText(e.target.value);
         }}
-      >
-        {localStorage.getItem("NoteText")}
-      </textarea>
+        value={localStorage.getItem("NoteText") || ""}
+      ></textarea>
 
       {preview && (
         <div className="w-full md">
@@ -70,7 +69,10 @@ function CreateNote() {
           checked={localStorage.getItem("private")}
         />
         <div className="justify-self-center lg:justify-self-end">
-          <ButtonWithAction className="m-5" onClick={""}>
+          <Button
+            className="m-5"
+            href={publicState ? "/notes/save-local" : "/notes/publish"}
+          >
             <IconWithButton
               reverse={true}
               icon={
@@ -79,7 +81,7 @@ function CreateNote() {
             >
               Отправить
             </IconWithButton>
-          </ButtonWithAction>
+          </Button>
         </div>
       </div>
     </div>
