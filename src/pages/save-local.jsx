@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function uuidv4() {
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
@@ -11,32 +10,27 @@ function uuidv4() {
 }
 
 function Save() {
-  const navigate = useNavigate();
-  let done = false;
+  let id = uuidv4();
+  let name = localStorage.getItem("NoteName");
+  let text = localStorage.getItem("NoteText");
+  if (!name || !text) return <Navigate to={`/notes`} replace={true} />;
 
-  useEffect(() => {
-    if (!done) {
-      done = true;
-      let id = uuidv4();
+  let notesObj = localStorage.getObj("Notes");
 
-      let notesObj = localStorage.getObj("Notes");
+  notesObj[id] = {
+    name,
+    text,
+    time: Date.now(),
+  };
 
-      notesObj[`${id}`] = {
-        name: localStorage.getItem("NoteName"),
-        text: localStorage.getItem("NoteText"),
-        time: Date.now(),
-      };
+  console.log(notesObj);
 
-      localStorage.setObj("Notes", notesObj);
+  localStorage.setObj("Notes", notesObj);
 
-      localStorage.removeItem("NoteName");
-      localStorage.removeItem("NoteText");
+  localStorage.removeItem("NoteName");
+  localStorage.removeItem("NoteText");
 
-      navigate(`/notes/${id}`, { replace: true });
-    }
-  }, []);
-
-  return <div />;
+  return <Navigate to={`/notes/${id}`} replace={true} />;
 }
 
 export default Save;

@@ -29,6 +29,7 @@ function CreateNote() {
         type="text"
         className={`mb-2 md:w-1/6 w-full ${inputStyle}`}
         placeholder="Название заметки..."
+        maxLength={64}
         value={localStorage.getItem("NoteName") || ""}
         onChange={(e) => {
           localStorage.setItem("NoteName", e.target.value);

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Menu from "./components/menu";
 import CreateNote from "./pages/create";
 import Save from "./pages/save-local";
+import Publish from "./pages/publish";
 import Note from "./pages/note";
 import Notes from "./pages/notes";
 
@@ -13,6 +14,7 @@ function App() {
   Storage.prototype.getObj = function (key) {
     return JSON.parse(this.getItem(key)) || {};
   };
+
   return (
     <div className="grid grid-cols-4  lg:grid-cols-5  gap-10 text-black dark:text-white">
       <Menu />
@@ -20,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<CreateNote />} />
           <Route path="/notes/save-local" element={<Save />} />
+          <Route path="/notes/publish" element={<Publish />} />
           <Route path="/notes/:id" element={<Note />} />
           <Route
             path="/about"

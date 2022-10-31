@@ -11,7 +11,10 @@ function Notes() {
         })
         .map((val) => {
           return (
-            <div className="grid grid-cols-1 lg:grid-cols-2 border border-blue-300 rounded-lg m-2 p-2 justify-items-start">
+            <div
+              className="grid grid-cols-1 lg:grid-cols-2 border border-blue-300 rounded-lg m-2 p-2 justify-items-start"
+              key={val[0]}
+            >
               <div className="font-medium leading-tight text-4xl mt-0 mb-2">
                 {val[1].name}
               </div>
