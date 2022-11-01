@@ -6,6 +6,8 @@ import Save from "./pages/save-local";
 import Publish from "./pages/publish";
 import Note from "./pages/note";
 import Notes from "./pages/notes";
+import PubNote from "./pages/pubNote";
+import PubError from "./pages/pubError";
 
 function App() {
   Storage.prototype.setObj = function (key, obj) {
@@ -24,6 +26,8 @@ function App() {
           <Route path="/notes/save-local" element={<Save />} />
           <Route path="/notes/publish" element={<Publish />} />
           <Route path="/notes/:id" element={<Note />} />
+          <Route path="/pubNotes/:id" element={<PubNote />} />
+          <Route path="/pubError" element={<PubError />} />
           <Route
             path="/about"
             element={<div className="col-span-4">О сервисе</div>}

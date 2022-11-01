@@ -1,5 +1,4 @@
 import ReactMarkdown from "react-markdown";
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import printDate from "../components/utils";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
@@ -7,11 +6,8 @@ import { Button, IconWithButton } from "../components/button";
 
 function Note() {
   let params = useParams();
-  const [note, setNote] = useState(false);
 
-  useEffect(() => {
-    setNote(localStorage.getObj("Notes")[params.id]);
-  }, []);
+  let note = localStorage.getObj("Notes")[params.id];
 
   if (note) {
     return (
