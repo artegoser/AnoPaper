@@ -30,7 +30,14 @@ function App() {
           <Route path="/pubError" element={<PubError />} />
           <Route
             path="/about"
-            element={<div className="col-span-4">О сервисе</div>}
+            element={
+              <div className="col-span-4">
+                AnoPaper позволяет анонимно сохранять и опубликовывать заметки.
+                Заметки поддерживают формат markdown. Публичные заметки доступны
+                только по ссылке. Записки которые не публичны записываются
+                только локально и не отправляются на сервер.
+              </div>
+            }
           />
           <Route path="/notes" element={<Notes />} />
         </Routes>
