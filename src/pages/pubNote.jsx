@@ -16,7 +16,6 @@ function PubNote() {
         data
           .json()
           .then((data) => {
-            console.log("awdawd");
             setNote(data);
           })
           .catch(() => {

@@ -23,8 +23,6 @@ function Save() {
     time: Date.now(),
   };
 
-  console.log(notesObj);
-
   localStorage.setObj("Notes", notesObj);
 
   localStorage.removeItem("NoteName");
