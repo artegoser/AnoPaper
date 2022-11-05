@@ -53,7 +53,7 @@ function CreateNote() {
       ></textarea>
 
       {preview && (
-        <div className="w-full md">
+        <div className="w-full md break-words">
           <ReactMarkdown>{text}</ReactMarkdown>
         </div>
       )}

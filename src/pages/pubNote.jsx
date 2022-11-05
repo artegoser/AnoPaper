@@ -54,7 +54,7 @@ function PubNote() {
             {printDate(note?.time || Date.now())}
           </div>
         </div>
-        <div className="w-full md">
+        <div className="w-full md break-words">
           <ReactMarkdown>{note?.text || "Загрузка..."}</ReactMarkdown>
         </div>
       </div>

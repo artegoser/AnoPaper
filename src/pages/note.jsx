@@ -30,7 +30,7 @@ function Note() {
               {printDate(note.time)}
             </div>
           </div>
-          <div className="w-full md">
+          <div className="w-full md break-words">
             <ReactMarkdown>{note.text}</ReactMarkdown>
           </div>
         </div>
