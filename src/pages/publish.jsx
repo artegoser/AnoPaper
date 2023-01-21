@@ -27,7 +27,7 @@ function Publish() {
             .then((data) => {
               localStorage.removeItem("NoteName");
               localStorage.removeItem("NoteText");
-              navigate(`/pubNotes/${data.id}`, { replace: true });
+              navigate(`/pubNotesSafe/${data.id}`, { replace: true });
             })
             .catch(() => {
               navigate(`/pubError`, { replace: true });
