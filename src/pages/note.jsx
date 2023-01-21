@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router-dom";
 import printDate from "../components/utils";
-import { ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
+import { ChevronDoubleLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { Button, IconWithButton } from "../components/button";
 
 function Note() {
@@ -21,6 +21,7 @@ function Note() {
             Заметки
           </IconWithButton>
         </Button>
+
         <div className="border border-blue-300 rounded-lg p-4">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">
@@ -34,10 +35,44 @@ function Note() {
             <ReactMarkdown>{note.text}</ReactMarkdown>
           </div>
         </div>
+        <div className="grid grid-cols-1">
+          <div className="justify-self-center lg:justify-self-end">
+            <Button
+              className="mt-4"
+              href="/notes"
+              onClick={() => {
+                let notesObj = localStorage.getObj("Notes");
+
+                delete notesObj[params.id];
+
+                localStorage.setObj("Notes", notesObj);
+              }}
+            >
+              <IconWithButton
+                icon={<TrashIcon className="transform translate-z-0 h-7 w-7" />}
+              >
+                Удалить
+              </IconWithButton>
+            </Button>
+          </div>
+        </div>
       </div>
     );
   } else {
-    return <div />;
+    return (
+      <div>
+        <Button className="mb-4" href="/notes">
+          <IconWithButton
+            icon={
+              <ChevronDoubleLeftIcon className="transform translate-z-0 h-7 w-7" />
+            }
+          >
+            Заметки
+          </IconWithButton>
+        </Button>
+        <div>Заметки не существует.</div>
+      </div>
+    );
   }
 }
 
