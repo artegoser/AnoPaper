@@ -9,6 +9,7 @@ import Notes from "./pages/notes";
 import PubNote from "./pages/pubNote";
 import PubError from "./pages/pubError";
 import PubNoteSafe from "./pages/pubNoteSafe";
+import ReactMarkdown from "react-markdown";
 
 function App() {
   Storage.prototype.setObj = function (key, obj) {
@@ -33,11 +34,20 @@ function App() {
           <Route
             path="/about"
             element={
-              <div className="col-span-4">
-                AnoPaper позволяет анонимно сохранять и опубликовывать заметки.
-                Заметки поддерживают формат markdown. Публичные заметки доступны
-                только по ссылке. Записки которые не публичны записываются
-                только локально и не отправляются на сервер.
+              <div className="col-span-4 md">
+                <ReactMarkdown>
+                  {`## Anopaper - сервис анонимных записок
+                  \rAnoPaper позволяет анонимно сохранять и публиковать заметки.  
+                  \r-----
+                  \r### Функционал:  
+                  
+                  \r* Заметки поддерживают формат markdown. Например запись:  \`### Заголовок 3-го уровня\` будет выглядеть так:  
+                  \r> ### Заголовок 3-го уровня
+               
+                  \r* Публичные заметки доступны только по ссылке.
+                  \r* При переходе по ссылке заметка исчезает, прочесть ее можно только один раз.
+                  \r* Не публичные заметки сохраняются локально и не отправляются на сервер.`}
+                </ReactMarkdown>
               </div>
             }
           />

@@ -1,4 +1,4 @@
-import { Button, IconWithButton } from "../components/button";
+import { Button, IconWithText } from "../components/button";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import { CheckBox } from "../components/checkbox";
 import { useState } from "react";
@@ -74,14 +74,14 @@ function CreateNote() {
             className="m-5"
             href={publicState ? "/notes/save-local" : "/notes/publish"}
           >
-            <IconWithButton
+            <IconWithText
               reverse={true}
               icon={
                 <ChevronDoubleRightIcon className="transform translate-z-0 h-7 w-7" />
               }
             >
               Отправить
-            </IconWithButton>
+            </IconWithText>
           </Button>
         </div>
       </div>

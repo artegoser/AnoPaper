@@ -2,7 +2,7 @@ import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router-dom";
 import printDate from "../components/utils";
 import { ChevronDoubleLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { Button, IconWithButton } from "../components/button";
+import { Button, IconWithText } from "../components/button";
 
 function Note() {
   let params = useParams();
@@ -13,13 +13,13 @@ function Note() {
     return (
       <div className="">
         <Button className="mb-4" href="/notes">
-          <IconWithButton
+          <IconWithText
             icon={
               <ChevronDoubleLeftIcon className="transform translate-z-0 h-7 w-7" />
             }
           >
             Заметки
-          </IconWithButton>
+          </IconWithText>
         </Button>
 
         <div className="border border-blue-300 rounded-lg p-4">
@@ -48,11 +48,11 @@ function Note() {
                 localStorage.setObj("Notes", notesObj);
               }}
             >
-              <IconWithButton
+              <IconWithText
                 icon={<TrashIcon className="transform translate-z-0 h-7 w-7" />}
               >
                 Удалить
-              </IconWithButton>
+              </IconWithText>
             </Button>
           </div>
         </div>
@@ -62,13 +62,13 @@ function Note() {
     return (
       <div>
         <Button className="mb-4" href="/notes">
-          <IconWithButton
+          <IconWithText
             icon={
               <ChevronDoubleLeftIcon className="transform translate-z-0 h-7 w-7" />
             }
           >
             Заметки
-          </IconWithButton>
+          </IconWithText>
         </Button>
         <div>Заметки не существует.</div>
       </div>

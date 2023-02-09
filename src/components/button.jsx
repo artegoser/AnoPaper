@@ -13,7 +13,7 @@ function Button(props) {
   );
 }
 
-function IconWithButton(props) {
+function IconWithText(props) {
   if (props.reverse) {
     return (
       <div className="grid place-content-end grid-cols-2">
@@ -30,4 +30,4 @@ function IconWithButton(props) {
   );
 }
 
-export { Button, IconWithButton };
+export { Button, IconWithText };

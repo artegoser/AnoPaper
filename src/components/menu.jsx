@@ -1,4 +1,4 @@
-import { Button, IconWithButton } from "./button";
+import { Button, IconWithText } from "./button";
 import {
   MagnifyingGlassCircleIcon,
   PencilIcon,
@@ -10,29 +10,29 @@ function Menu() {
   return (
     <div className="grid grid-cols-1 col-span-4 lg:col-span-1 gap-2 m-4 place-content-start justify-self-center justify-center">
       <Button href="/notes">
-        <IconWithButton
+        <IconWithText
           icon={
             <MagnifyingGlassCircleIcon className="transform translate-z-0 h-7 w-7" />
           }
         >
           Заметки
-        </IconWithButton>
+        </IconWithText>
       </Button>
       <Button href="/">
-        <IconWithButton
+        <IconWithText
           icon={<PencilIcon className="transform translate-z-0 h-7 w-7" />}
         >
           Написать
-        </IconWithButton>
+        </IconWithText>
       </Button>
       <Button href="/about">
-        <IconWithButton
+        <IconWithText
           icon={
             <ExclamationCircleIcon className="transform translate-z-0 h-7 w-7" />
           }
         >
           Подробнее
-        </IconWithButton>
+        </IconWithText>
       </Button>
     </div>
   );

@@ -25,7 +25,7 @@
   }
 
   .md blockquote{
-    @apply border-l-4 pl-2 rounded-lg;
+    @apply border-l-4 pl-2 rounded-lg ml-4 mt-2 mb-2;
     @apply bg-zinc-200 border-zinc-400;
     @apply dark:bg-zinc-800 dark:border-zinc-600;
   }
@@ -35,19 +35,19 @@
   }
 
   .md ul{
-    @apply list-disc list-inside;
+    @apply list-disc list-inside ml-4;
   }
 
   .md li ul {
-    @apply list-disc list-inside ml-2;
+    @apply list-disc list-inside;
   }
 
   .md ol{
-    @apply list-decimal list-inside;
+    @apply list-decimal list-inside ml-4;
   }
 
   .md li ol{
-    @apply list-decimal list-inside ml-2;
+    @apply list-decimal list-inside ml-4;
   }
 
   .md code {
@@ -64,4 +64,6 @@
   .md img {
     @apply w-96 ease-[cubic-bezier(.69,.58,.32,1.69)] hover:scale-105 rounded-2xl hover:drop-shadow-2xl transition duration-500 lg:ml-5;
   }
+
+  .md p { display: inline; }
 }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import printDate from "../components/utils";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
-import { Button, IconWithButton } from "../components/button";
+import { Button, IconWithText } from "../components/button";
 import { CopyToClipboard } from "../components/copytocb";
 
 function PubNoteSafe() {
@@ -41,13 +41,13 @@ function PubNoteSafe() {
   return (
     <div className="">
       <Button className="mb-4" href="/">
-        <IconWithButton
+        <IconWithText
           icon={
             <ChevronDoubleLeftIcon className="transform translate-z-0 h-7 w-7" />
           }
         >
           Писать
-        </IconWithButton>
+        </IconWithText>
       </Button>
 
       {note?.code === 1 && (
