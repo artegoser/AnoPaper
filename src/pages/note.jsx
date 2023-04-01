@@ -1,4 +1,4 @@
-import ReactMarkdown from "react-markdown";
+import RenderMarkdown from "../components/markdown";
 import { useParams } from "react-router-dom";
 import printDate from "../components/utils";
 import { ChevronDoubleLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
@@ -32,7 +32,7 @@ function Note() {
             </div>
           </div>
           <div className="w-full md break-words">
-            <ReactMarkdown>{note.text}</ReactMarkdown>
+            <RenderMarkdown>{note.text}</RenderMarkdown>
           </div>
         </div>
         <div className="grid grid-cols-1">

@@ -2,7 +2,7 @@ import { Button, IconWithText } from "../components/button";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import { CheckBox } from "../components/checkbox";
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
+import RenderMarkdown from "../components/markdown";
 
 function CreateNote() {
   const [preview, setPreview] = useState(false);
@@ -54,7 +54,7 @@ function CreateNote() {
 
       {preview && (
         <div className="w-full md break-words">
-          <ReactMarkdown>{text}</ReactMarkdown>
+          <RenderMarkdown>{text}</RenderMarkdown>
         </div>
       )}
 

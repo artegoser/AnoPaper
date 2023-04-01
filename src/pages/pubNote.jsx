@@ -1,4 +1,4 @@
-import ReactMarkdown from "react-markdown";
+import RenderMarkdown from "../components/markdown";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import printDate from "../components/utils";
@@ -55,7 +55,7 @@ function PubNote() {
           </div>
         </div>
         <div className="w-full md break-words">
-          <ReactMarkdown>{note?.text || "Загрузка..."}</ReactMarkdown>
+          <RenderMarkdown>{note?.text || "Загрузка..."}</RenderMarkdown>
         </div>
       </div>
     </div>
