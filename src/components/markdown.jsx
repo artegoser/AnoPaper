@@ -44,7 +44,6 @@ function RenderMarkdown(props) {
 function Pre({ children }) {
   let text = children[0].props.children[0];
   let oneline = text.indexOf("\n") <= 1;
-  console.log(oneline);
   return (
     <pre className={oneline ? "" : "blog-pre"}>
       {!oneline && <CodeCopyBtn text={text} />}
