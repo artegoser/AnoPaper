@@ -1,6 +1,7 @@
 import rehypeMathjax from "rehype-mathjax";
 import remarkMath from "remark-math";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { darcula, github } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -31,7 +32,7 @@ function RenderMarkdown(props) {
   return (
     <ReactMarkdown
       children={props.children}
-      remarkPlugins={[remarkMath]}
+      remarkPlugins={[remarkMath, remarkGfm]}
       rehypePlugins={[rehypeMathjax]}
       components={{
         code: CodeBlock,

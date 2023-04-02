@@ -56,11 +56,27 @@
     @apply p-1;
     @apply rounded-lg;
     @apply bg-zinc-200 border-zinc-400;
-    @apply dark:bg-zinc-800 dark:border-zinc-600;
+    @apply dark:bg-zinc-800 dark:border-zinc-600 overflow-scroll;
   }
 
   .md a {
     @apply inline-block bg-transparent text-blue-600;
+  }
+
+  .md table {
+    @apply w-1/2;
+    border-style: hidden;
+  }
+
+  
+
+  .md table thead {
+    @apply bg-zinc-200 dark:bg-zinc-800;
+    
+  }
+
+  .md table tr {
+    @apply border-2 border-zinc-400;
   }
 
   .md img {
