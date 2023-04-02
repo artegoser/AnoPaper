@@ -9,9 +9,9 @@ import { CopyToClipboard } from "../components/copytocb";
 function PubNoteSafe() {
   let params = useParams();
 
-  let [note, setNote] = useState();
+  let [note, setNote] = useState(false);
 
-  if (!note)
+  if (note === false)
     fetch(`/get-note/safe/${params.id}`)
       .then((data) => {
         data

@@ -38,7 +38,9 @@ function Publish() {
               navigate(`/pubNotesSafe/${data.id}`, { replace: true });
             })
             .catch(() => {
-              navigate(`/pubError?err=${err}`, { replace: true });
+              if (err == false) {
+                navigate(`/pubError`, { replace: true });
+              } else navigate(`/pubError?err=${err}`, { replace: true });
             });
         })
         .catch(() => {
