@@ -38,7 +38,12 @@ function PubNote() {
   else {
     if (note.save !== false) {
       localStorage.setItem("NoteName", note.name);
-      localStorage.setItem("NoteText", note.text);
+      localStorage.setItem(
+        "NoteText",
+        `*(публичная заметка) (была опубликована в ${printDate(
+          note.time
+        )})*  \n${note.text}`
+      );
       return <Navigate to="/notes/save-local" replace={true} />;
     } else {
       return (
