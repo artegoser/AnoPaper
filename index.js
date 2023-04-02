@@ -4,12 +4,15 @@ const bodyParser = require("body-parser");
 const isValidNote = require("./note_validator");
 const fs = require("fs");
 const path = require("path");
-
 const cryptojs = require("crypto-js");
 
 require("dotenv").config();
 
 const app = express();
+
+if (!fs.existsSync("./notes")) {
+  fs.mkdirSync("./notes");
+}
 
 app.use(bodyParser.json());
 
