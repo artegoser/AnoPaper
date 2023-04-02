@@ -55,7 +55,7 @@ function PubNoteSafe() {
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <h2 className="font-medium text-center lg:text-left p-2">
               Ссылка для отправки публичной заметки. При переходе на эту ссылку,
-              заметка исчезнет.
+              заметка исчезнет с сервера и будет сохранена локально.
             </h2>
             <CopyToClipboard
               text={`${window.location.origin}/pubNotes/${params.id}`}
