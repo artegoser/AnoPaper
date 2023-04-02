@@ -33,7 +33,7 @@ function CopyToClipboard(props) {
   );
 }
 
-function CodeCopyBtn(props) {
+function CodeCopyBtn({ text }) {
   let [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function CodeCopyBtn(props) {
     <div
       className="code-copy-btn"
       onClick={() => {
-        navigator.clipboard.writeText(props.children[0].props.children[0]);
+        navigator.clipboard.writeText(text);
         setCopied(true);
       }}
     >

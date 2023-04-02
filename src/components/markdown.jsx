@@ -12,14 +12,19 @@ let theme = window.matchMedia("(prefers-color-scheme: dark)").matches
   : "light";
 
 function CodeBlock(props) {
-  return (
-    <SyntaxHighlighter
-      className={`md-code ${props.className}`}
-      style={theme == "light" ? github : darcula}
-    >
-      {props.children[0]}
-    </SyntaxHighlighter>
-  );
+  let text = props.children[0];
+  let oneline = text.indexOf("\n") <= 1;
+  if (oneline) {
+    return <code className="md-code">{text}</code>;
+  } else
+    return (
+      <SyntaxHighlighter
+        className={`md-code ${props.className}`}
+        style={theme == "light" ? github : darcula}
+      >
+        {text}
+      </SyntaxHighlighter>
+    );
 }
 
 function RenderMarkdown(props) {
@@ -37,9 +42,12 @@ function RenderMarkdown(props) {
 }
 
 function Pre({ children }) {
+  let text = children[0].props.children[0];
+  let oneline = text.indexOf("\n") <= 1;
+  console.log(oneline);
   return (
-    <pre className="blog-pre">
-      <CodeCopyBtn>{children}</CodeCopyBtn>
+    <pre className={oneline ? "" : "blog-pre"}>
+      {!oneline && <CodeCopyBtn text={text} />}
       {children}
     </pre>
   );
