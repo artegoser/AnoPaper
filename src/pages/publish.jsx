@@ -9,10 +9,18 @@ function Publish() {
     if (!done) {
       done = true;
 
+      let err = false;
       const note = {
         name: localStorage.getItem("NoteName"),
         text: localStorage.getItem("NoteText"),
       };
+
+      if (!note.name) {
+        err = "Заметка не была опубликована, так как отсутствует название.";
+      }
+      if (!note.text) {
+        err = "Заметка не была опубликована, так как отсутствует текст.";
+      }
 
       fetch(`/publish`, {
         method: "POST",
@@ -30,7 +38,7 @@ function Publish() {
               navigate(`/pubNotesSafe/${data.id}`, { replace: true });
             })
             .catch(() => {
-              navigate(`/pubError`, { replace: true });
+              navigate(`/pubError?err=${err}`, { replace: true });
             });
         })
         .catch(() => {

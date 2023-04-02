@@ -1,8 +1,12 @@
 import printDate from "../components/utils";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
 import { Button, IconWithText } from "../components/button";
+import { useSearchParams } from "react-router-dom";
 
 function PubError() {
+  const [searchParams] = useSearchParams();
+  let err = searchParams.get("err");
+
   return (
     <div className="">
       <Button className="mb-4" href="/">
@@ -24,7 +28,7 @@ function PubError() {
           </div>
         </div>
         <div className="w-full md">
-          Заметка не была опубликована из-за неизвестной ошибки
+          {err ? err : "Заметка не была опубликована из-за неизвестной ошибки"}
         </div>
       </div>
     </div>

@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 
-/* styles for displaying markdown */
+
 @layer base {
+  /* styles for displaying markdown */
   .md h1 {
     @apply text-6xl;
   }
@@ -28,6 +29,7 @@
     @apply border-l-4 pl-2 rounded-lg ml-4 mt-2 mb-2;
     @apply bg-zinc-200 border-zinc-400;
     @apply dark:bg-zinc-800 dark:border-zinc-600;
+    @apply pb-2;
   }
 
   .md hr {
@@ -50,7 +52,7 @@
     @apply list-decimal list-inside ml-4;
   }
 
-  .md code {
+  .md-code {
     @apply p-1;
     @apply rounded-lg;
     @apply bg-zinc-200 border-zinc-400;
@@ -66,4 +68,21 @@
   }
 
   .md p, .math-inline { display: inline-block; }
+  .md li p {
+    display: inline;
+  }
+
+  /* other styles */
+
+  .blog-pre {
+    @apply mt-2 mb-2 relative;
+  }
+  
+  .code-copy-btn {
+    @apply text-zinc-400 dark:text-zinc-300 absolute right-2 top-2 cursor-pointer;
+  }
+  
+  .code-copy-btn:hover {
+    @apply text-zinc-500 dark:text-zinc-400;
+  }
 }

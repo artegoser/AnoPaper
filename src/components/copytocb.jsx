@@ -6,7 +6,6 @@ function CopyToClipboard(props) {
   let [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    console.log(copied);
     if (copied === true) {
       setTimeout(() => {
         setCopied(false);
@@ -23,6 +22,36 @@ function CopyToClipboard(props) {
       }}
     >
       <div className="col-span-3 truncate">{props.text}</div>
+      <div className="justify-self-center lg:justify-self-end cursor-pointer">
+        {copied === true ? (
+          <CheckIcon className="transform translate-z-0 h-7 w-7" />
+        ) : (
+          <ClipboardIcon className="transform translate-z-0 h-7 w-7" />
+        )}
+      </div>
+    </div>
+  );
+}
+
+function CodeCopyBtn(props) {
+  let [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (copied === true) {
+      setTimeout(() => {
+        setCopied(false);
+      }, 1000);
+    }
+  });
+
+  return (
+    <div
+      className="code-copy-btn"
+      onClick={() => {
+        navigator.clipboard.writeText(props.children[0].props.children[0]);
+        setCopied(true);
+      }}
+    >
       <div className="justify-self-center lg:justify-self-end">
         {copied === true ? (
           <CheckIcon className="transform translate-z-0 h-7 w-7" />
@@ -34,4 +63,4 @@ function CopyToClipboard(props) {
   );
 }
 
-export { CopyToClipboard };
+export { CopyToClipboard, CodeCopyBtn };

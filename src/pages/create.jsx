@@ -3,6 +3,7 @@ import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import { CheckBox } from "../components/checkbox";
 import { useState } from "react";
 import RenderMarkdown from "../components/markdown";
+import printDate from "../components/utils";
 
 function CreateNote() {
   const [preview, setPreview] = useState(false);
@@ -10,12 +11,20 @@ function CreateNote() {
   const [text, setText] = useState(localStorage.getItem("NoteText"));
   const [name, setName] = useState(localStorage.getItem("NoteName"));
 
+  const [date, setDate] = useState(Date.now());
+
+  setInterval(() => {
+    if (preview) {
+      setDate(Date.now());
+    }
+  }, 1000);
+
   let inputStyle = `form-control block px-3 py-1.5 text-base font-normal text-gray-700 dark:text-white bg-white dark:bg-zinc-900 bg-clip-padding border border-solid border-gray-300 rounded-lg transition ease-in-out focus:border-blue-600 focus:outline-none`;
   return (
     <div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">
-          Написать заметку
+          {`${preview ? "" : "Написать заметку"}`}
         </h2>
         <CheckBox
           className="justify-self-center lg:justify-self-end"
@@ -27,13 +36,15 @@ function CreateNote() {
 
       <input
         type="text"
-        className={`mb-2 md:w-1/6 w-full ${inputStyle}`}
+        className={`mb-2 md:w-1/6 w-full ${inputStyle} ${
+          preview ? "hidden" : ""
+        }`}
         placeholder="Название заметки..."
         maxLength={64}
         value={localStorage.getItem("NoteName") || ""}
         onChange={(e) => {
-          localStorage.setItem("NoteName", e.target.value);
           setName(e.target.value);
+          localStorage.setItem("NoteName", e.target.value);
         }}
       />
       <textarea
@@ -46,12 +57,22 @@ function CreateNote() {
         placeholder="Ваша заметка начинается здесь. Можно использовать markdown..."
         maxLength={5000}
         onChange={(e) => {
-          localStorage.setItem("NoteText", e.target.value);
           setText(e.target.value);
+          localStorage.setItem("NoteText", e.target.value);
         }}
         value={localStorage.getItem("NoteText") || ""}
       ></textarea>
 
+      {preview && (
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">
+            {name}
+          </h2>
+          <div className="justify-self-center lg:justify-self-end">
+            {printDate(Date.now())}
+          </div>
+        </div>
+      )}
       {preview && (
         <div className="w-full md break-words">
           <RenderMarkdown>{text}</RenderMarkdown>
@@ -80,7 +101,7 @@ function CreateNote() {
                 <ChevronDoubleRightIcon className="transform translate-z-0 h-7 w-7" />
               }
             >
-              Отправить
+              {publicState ? "Сохранить" : "Опубликовать"}
             </IconWithText>
           </Button>
         </div>
