@@ -10,6 +10,7 @@ import PubNote from "./pages/pubNote";
 import PubError from "./pages/pubError";
 import PubNoteSafe from "./pages/pubNoteSafe";
 import RenderMarkdown from "./components/markdown";
+import { io } from "socket.io-client";
 
 function App() {
   Storage.prototype.setObj = function (key, obj) {
@@ -18,6 +19,24 @@ function App() {
   Storage.prototype.getObj = function (key) {
     return JSON.parse(this.getItem(key)) || {};
   };
+
+  const socket = io();
+
+  function onConnect() {
+    console.log("connect");
+  }
+
+  function onDisconnect() {
+    console.log("disconnect");
+  }
+
+  function onFooEvent(value) {
+    console.log("foo event", value);
+  }
+
+  socket.on("connect", onConnect);
+  socket.on("disconnect", onDisconnect);
+  socket.on("foo", onFooEvent);
 
   return (
     <div className="grid grid-cols-4  lg:grid-cols-5  gap-10 text-black dark:text-white">

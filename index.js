@@ -5,14 +5,21 @@ const isValidNote = require("./note_validator");
 const fs = require("fs");
 const path = require("path");
 const cryptojs = require("crypto-js");
+const { Server } = require("socket.io");
 
 require("dotenv").config();
 
-const app = express();
+const app = express(),
+  server = require("http").createServer(app),
+  io = new Server().listen(server);
 
 if (!fs.existsSync("./notes")) {
   fs.mkdirSync("./notes");
 }
+
+setInterval(() => {
+  io.emit("foo", "bar");
+}, 1000);
 
 app.use(bodyParser.json());
 
@@ -59,6 +66,6 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./dist", "index.html"));
 });
 
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT}`);
 });
