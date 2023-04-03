@@ -10,9 +10,7 @@ function Settings() {
         Настройки
       </h1>
 
-      <h1 className="text-center lg:text-left leading-tight text-xl font-bold">
-        Пользователь
-      </h1>
+      <SettingsPlaceholder text="Пользователь" />
 
       <SettingsTextInput
         placeholder="Имя"
@@ -32,9 +30,7 @@ function Settings() {
         settingName="userStatus"
       />
 
-      <h1 className="text-center lg:text-left leading-tight text-xl font-bold">
-        Заметки
-      </h1>
+      <SettingsPlaceholder text="Заметки" />
 
       <SettingsCheckBox
         label="Редактирование в предпросмотре"
@@ -50,9 +46,7 @@ function Settings() {
         settingName="publicNote"
       />
 
-      <h1 className="text-center lg:text-left leading-tight text-xl font-bold">
-        Интерфейс
-      </h1>
+      <SettingsPlaceholder text="Интерфейс" />
 
       <SettingsSelectInput
         label="Язык"
@@ -69,9 +63,7 @@ function Settings() {
         ]}
       />
 
-      <h1 className="text-center lg:text-left leading-tight text-xl font-bold">
-        Стороннее API
-      </h1>
+      <SettingsPlaceholder text="Стороннее API" />
 
       <SettingsTextInput
         placeholder="Ключ"
@@ -80,6 +72,14 @@ function Settings() {
         secret
       />
     </div>
+  );
+}
+
+function SettingsPlaceholder({ text }) {
+  return (
+    <h1 className="text-center lg:text-left leading-tight text-xl font-semibold">
+      {text}
+    </h1>
   );
 }
 
