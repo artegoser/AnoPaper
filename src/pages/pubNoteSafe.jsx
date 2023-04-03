@@ -5,6 +5,7 @@ import printDate from "../components/utils";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
 import { Button, IconWithText } from "../components/button";
 import { CopyToClipboard } from "../components/copytocb";
+import Note from "../components/note";
 
 function PubNoteSafe() {
   let params = useParams();
@@ -64,19 +65,7 @@ function PubNoteSafe() {
         </div>
       )}
 
-      <div className="border border-blue-300 rounded-lg p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">
-            {note?.name || "Загрузка..."}
-          </h2>
-          <div className="justify-self-center lg:justify-self-end">
-            {printDate(note?.time || Date.now())}
-          </div>
-        </div>
-        <div className="w-full md break-words">
-          <RenderMarkdown>{note?.text || "Загрузка..."}</RenderMarkdown>
-        </div>
-      </div>
+      <Note note={note} />
     </div>
   );
 }

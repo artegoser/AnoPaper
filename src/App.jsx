@@ -4,13 +4,13 @@ import Menu from "./components/menu";
 import CreateNote from "./pages/create";
 import Save from "./pages/save-local";
 import Publish from "./pages/publish";
-import Note from "./pages/note";
+import NotePage from "./pages/note";
 import Notes from "./pages/notes";
 import PubNote from "./pages/pubNote";
 import PubError from "./pages/pubError";
 import PubNoteSafe from "./pages/pubNoteSafe";
 import RenderMarkdown from "./components/markdown";
-import { io } from "socket.io-client";
+import socket from "./components/socket";
 
 function App() {
   Storage.prototype.setObj = function (key, obj) {
@@ -20,24 +20,6 @@ function App() {
     return JSON.parse(this.getItem(key)) || {};
   };
 
-  const socket = io();
-
-  function onConnect() {
-    console.log("connect");
-  }
-
-  function onDisconnect() {
-    console.log("disconnect");
-  }
-
-  function onFooEvent(value) {
-    console.log("foo event", value);
-  }
-
-  socket.on("connect", onConnect);
-  socket.on("disconnect", onDisconnect);
-  socket.on("foo", onFooEvent);
-
   return (
     <div className="grid grid-cols-4  lg:grid-cols-5  gap-10 text-black dark:text-white">
       <Menu />
@@ -46,7 +28,7 @@ function App() {
           <Route path="/" element={<CreateNote />} />
           <Route path="/notes/save-local" element={<Save />} />
           <Route path="/notes/publish" element={<Publish />} />
-          <Route path="/notes/:id" element={<Note />} />
+          <Route path="/notes/:id" element={<NotePage />} />
           <Route path="/pubNotes/:id" element={<PubNote />} />
           <Route path="/pubNotesSafe/:id" element={<PubNoteSafe />} />
           <Route path="/pubError" element={<PubError />} />

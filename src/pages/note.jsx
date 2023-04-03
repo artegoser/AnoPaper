@@ -1,10 +1,9 @@
-import RenderMarkdown from "../components/markdown";
 import { useParams } from "react-router-dom";
-import printDate from "../components/utils";
 import { ChevronDoubleLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { Button, IconWithText } from "../components/button";
+import Note from "../components/note";
 
-function Note() {
+function NotePage() {
   let params = useParams();
 
   let note = localStorage.getObj("Notes")[params.id];
@@ -22,19 +21,7 @@ function Note() {
           </IconWithText>
         </Button>
 
-        <div className="border border-blue-300 rounded-lg p-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">
-              {note.name}
-            </h2>
-            <div className="justify-self-center lg:justify-self-end">
-              {printDate(note.time)}
-            </div>
-          </div>
-          <div className="w-full md break-words">
-            <RenderMarkdown>{note.text}</RenderMarkdown>
-          </div>
-        </div>
+        <Note note={note} />
         <div className="grid grid-cols-1">
           <div className="justify-self-center lg:justify-self-end">
             <Button
@@ -76,4 +63,4 @@ function Note() {
   }
 }
 
-export default Note;
+export default NotePage;

@@ -17,10 +17,6 @@ if (!fs.existsSync("./notes")) {
   fs.mkdirSync("./notes");
 }
 
-setInterval(() => {
-  io.emit("foo", "bar");
-}, 1000);
-
 app.use(bodyParser.json());
 
 app.post("/publish", function (req, res) {

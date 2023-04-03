@@ -4,6 +4,14 @@ import { CheckBox } from "../components/checkbox";
 import { useState } from "react";
 import RenderMarkdown from "../components/markdown";
 import printDate from "../components/utils";
+import rehypeRemark from "rehype-remark/lib";
+import ContentEditable from "react-contenteditable";
+import ReactDOMServer from "react-dom/server";
+import { unified } from "unified";
+import rehypeParse from "rehype-parse";
+import remarkStringify from "remark-stringify";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 
 function CreateNote() {
   const [preview, setPreview] = useState(false);
@@ -13,11 +21,25 @@ function CreateNote() {
 
   const [date, setDate] = useState(Date.now());
 
-  setInterval(() => {
-    if (preview) {
-      setDate(Date.now());
-    }
-  }, 1000);
+  // setInterval(() => {
+  //   if (preview) {
+  //     setDate(Date.now());
+  //   }
+  // }, 1000);
+
+  async function previewChange(val) {
+    let md = await unified()
+      .use(remarkGfm)
+      .use(remarkMath)
+      .use(rehypeParse)
+      .use(rehypeRemark)
+      .use(remarkStringify)
+      .process(val.target.value);
+
+    md = md.value.trim();
+
+    localStorage.setItem("NoteText", md);
+  }
 
   let inputStyle = `form-control block px-3 py-1.5 text-base font-normal text-gray-700 dark:text-white bg-white dark:bg-zinc-900 bg-clip-padding border border-solid border-gray-300 rounded-lg transition ease-in-out focus:border-blue-600 focus:outline-none`;
   return (
@@ -30,7 +52,10 @@ function CreateNote() {
           className="justify-self-center lg:justify-self-end"
           label="Предпросмотр"
           id="preview"
-          onClick={() => setPreview(!preview)}
+          onClick={() => {
+            setText(localStorage.getItem("NoteText"));
+            setPreview(!preview);
+          }}
         />
       </div>
 
@@ -75,7 +100,13 @@ function CreateNote() {
       )}
       {preview && (
         <div className="w-full md break-words">
-          <RenderMarkdown>{text}</RenderMarkdown>
+          <ContentEditable
+            disabled={false}
+            onChange={previewChange}
+            html={ReactDOMServer.renderToString(
+              <RenderMarkdown>{text}</RenderMarkdown>
+            )}
+          />
         </div>
       )}
 
