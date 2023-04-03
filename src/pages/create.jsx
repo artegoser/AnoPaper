@@ -13,6 +13,7 @@ import remarkStringify from "remark-stringify";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import { SettingsCheckBox } from "../components/settingsInputs";
+import { inputStyle } from "../components/styles";
 
 function CreateNote() {
   const [preview, setPreview] = useState(false);
@@ -36,7 +37,6 @@ function CreateNote() {
     localStorage.setItem("NoteText", md);
   }
 
-  let inputStyle = `form-control block px-3 py-1.5 text-base font-normal text-gray-700 dark:text-white bg-white dark:bg-zinc-900 bg-clip-padding border border-solid border-gray-300 rounded-lg transition ease-in-out focus:border-blue-600 focus:outline-none`;
   return (
     <div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
