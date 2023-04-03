@@ -30,4 +30,25 @@ function IconWithText(props) {
   );
 }
 
-export { Button, IconWithText };
+function ButtonWithIcon(props) {
+  return (
+    <Button
+      href={props.href}
+      className={props.className}
+      onClick={props.onClick}
+    >
+      <IconWithText
+        reverse={props.reverse}
+        icon={
+          <props.icon
+            className={props.iconClass || "transform translate-z-0 h-7 w-7"}
+          />
+        }
+      >
+        {props.text}
+      </IconWithText>
+    </Button>
+  );
+}
+
+export { Button, IconWithText, ButtonWithIcon };

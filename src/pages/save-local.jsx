@@ -13,6 +13,8 @@ function Save() {
   let id = uuidv4();
   let name = localStorage.getItem("NoteName");
   let text = localStorage.getItem("NoteText");
+  let pubTime = Number(localStorage.getItem("NotePubTime"));
+
   if (!name || !text) return <Navigate to={`/notes`} replace={true} />;
 
   let notesObj = localStorage.getObj("Notes");
@@ -21,12 +23,15 @@ function Save() {
     name,
     text,
     time: Date.now(),
+    pubTime,
+    pub: !!pubTime,
   };
 
   localStorage.setObj("Notes", notesObj);
 
   localStorage.removeItem("NoteName");
   localStorage.removeItem("NoteText");
+  localStorage.removeItem("NotePubTime");
 
   return <Navigate to={`/notes/${id}`} replace={true} />;
 }

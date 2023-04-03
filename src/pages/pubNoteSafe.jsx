@@ -1,9 +1,7 @@
-import RenderMarkdown from "../components/markdown";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import printDate from "../components/utils";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
-import { Button, IconWithText } from "../components/button";
+import { ButtonWithIcon } from "../components/button";
 import { CopyToClipboard } from "../components/copytocb";
 import Note from "../components/note";
 
@@ -41,15 +39,12 @@ function PubNoteSafe() {
 
   return (
     <div className="">
-      <Button className="mb-4" href="/">
-        <IconWithText
-          icon={
-            <ChevronDoubleLeftIcon className="transform translate-z-0 h-7 w-7" />
-          }
-        >
-          Писать
-        </IconWithText>
-      </Button>
+      <ButtonWithIcon
+        className="mb-4"
+        href="/"
+        text="Писать"
+        icon={ChevronDoubleLeftIcon}
+      />
 
       {note?.code === 1 && (
         <div className="p-4 mb-2">

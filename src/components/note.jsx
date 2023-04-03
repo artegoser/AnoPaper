@@ -9,7 +9,9 @@ function Note({ note }) {
           {note.name}
         </h2>
         <div className="justify-self-center lg:justify-self-end">
-          {printDate(note.time)}
+          {`${printDate(note.time)} ${
+            note.pub ? "| Публичная" : "| Локальная"
+          }`}
         </div>
       </div>
       <div className="w-full md break-words">

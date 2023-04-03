@@ -1,6 +1,6 @@
 import printDate from "../components/utils";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
-import { Button, IconWithText } from "../components/button";
+import { ButtonWithIcon } from "../components/button";
 import { useSearchParams } from "react-router-dom";
 
 function PubError() {
@@ -9,15 +9,13 @@ function PubError() {
 
   return (
     <div className="">
-      <Button className="mb-4" href="/">
-        <IconWithText
-          icon={
-            <ChevronDoubleLeftIcon className="transform translate-z-0 h-7 w-7" />
-          }
-        >
-          Вернуться
-        </IconWithText>
-      </Button>
+      <ButtonWithIcon
+        className="mb-4"
+        href="/"
+        text="Вернуться"
+        icon={ChevronDoubleLeftIcon}
+      />
+
       <div className="border border-blue-300 rounded-lg p-4">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">

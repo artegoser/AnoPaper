@@ -23,6 +23,9 @@ app.post("/publish", function (req, res) {
   if (isValidNote(req.body)) {
     let hash = sha3(JSON.stringify(req.body));
     req.body.time = Date.now();
+    req.body.pub = true;
+    req.body.pubTime = req.body.time;
+
     try {
       fs.writeFileSync(
         `./notes/${hash}.json`,

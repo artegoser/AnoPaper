@@ -1,4 +1,4 @@
-import { Button, IconWithText } from "../components/button";
+import { ButtonWithIcon } from "../components/button";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import printDate from "../components/utils";
 
@@ -19,16 +19,12 @@ function Notes() {
           <div className="grid grid-cols-1 lg:grid-cols-2 justify-self-center lg:justify-self-end">
             <div className="text-center">{printDate(val[1].time)}</div>
             <div className="">
-              <Button className="" href={`/notes/${val[0]}`}>
-                <IconWithText
-                  reverse={true}
-                  icon={
-                    <ChevronDoubleRightIcon className="transform translate-z-0 h-7 w-7" />
-                  }
-                >
-                  Перейти
-                </IconWithText>
-              </Button>
+              <ButtonWithIcon
+                href={`/notes/${val[0]}`}
+                reverse={true}
+                icon={ChevronDoubleRightIcon}
+                text="Перейти"
+              />
             </div>
           </div>
         </div>

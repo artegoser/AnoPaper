@@ -11,6 +11,7 @@ import PubError from "./pages/pubError";
 import PubNoteSafe from "./pages/pubNoteSafe";
 import RenderMarkdown from "./components/markdown";
 import socket from "./components/socket";
+import Settings from "./pages/settings";
 
 function App() {
   Storage.prototype.setObj = function (key, obj) {
@@ -19,6 +20,8 @@ function App() {
   Storage.prototype.getObj = function (key) {
     return JSON.parse(this.getItem(key)) || {};
   };
+
+  window.settings = localStorage.getObj("settings") || {};
 
   return (
     <div className="grid grid-cols-4  lg:grid-cols-5  gap-10 text-black dark:text-white">
@@ -32,6 +35,7 @@ function App() {
           <Route path="/pubNotes/:id" element={<PubNote />} />
           <Route path="/pubNotesSafe/:id" element={<PubNoteSafe />} />
           <Route path="/pubError" element={<PubError />} />
+          <Route path="/settings" element={<Settings />} />
           <Route
             path="/about"
             element={

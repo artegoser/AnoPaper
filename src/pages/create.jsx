@@ -1,4 +1,4 @@
-import { Button, IconWithText } from "../components/button";
+import { ButtonWithIcon } from "../components/button";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import { CheckBox } from "../components/checkbox";
 import { useState } from "react";
@@ -12,20 +12,15 @@ import rehypeParse from "rehype-parse";
 import remarkStringify from "remark-stringify";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import { SettingsCheckBox } from "../components/settingsInputs";
 
 function CreateNote() {
   const [preview, setPreview] = useState(false);
-  const [publicState, setPublicState] = useState(true);
+  const [publicState, setPublicState] = useState(settings.publicNote);
   const [text, setText] = useState(localStorage.getItem("NoteText"));
   const [name, setName] = useState(localStorage.getItem("NoteName"));
 
   const [date, setDate] = useState(Date.now());
-
-  // setInterval(() => {
-  //   if (preview) {
-  //     setDate(Date.now());
-  //   }
-  // }, 1000);
 
   async function previewChange(val) {
     let md = await unified()
@@ -45,16 +40,17 @@ function CreateNote() {
   return (
     <div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
-        <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">
+        <h2 className="text-center lg:text-left leading-tight text-2xl font-bold">
           {`${preview ? "" : "Написать заметку"}`}
         </h2>
         <CheckBox
           className="justify-self-center lg:justify-self-end"
           label="Предпросмотр"
           id="preview"
-          onClick={() => {
+          onClick={(val) => {
             setText(localStorage.getItem("NoteText"));
-            setPreview(!preview);
+            setDate(Date.now());
+            setPreview(val.target.checked);
           }}
         />
       </div>
@@ -101,7 +97,7 @@ function CreateNote() {
       {preview && (
         <div className="w-full md break-words">
           <ContentEditable
-            disabled={false}
+            disabled={!window.settings.editPreview}
             onChange={previewChange}
             html={ReactDOMServer.renderToString(
               <RenderMarkdown>{text}</RenderMarkdown>
@@ -111,30 +107,24 @@ function CreateNote() {
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-full">
-        <CheckBox
-          className="justify-self-center lg:justify-self-start"
+        <SettingsCheckBox
           label="Публичная заметка"
           title="Если включено, то заметка будет видна всем пользователям"
-          id="public"
-          onClick={() => {
-            setPublicState(!publicState);
+          checked={settings.publicNote}
+          settingName="publicNote"
+          className="justify-self-center lg:justify-self-start"
+          onClick={(val) => {
+            setPublicState(val.target.checked);
           }}
-          checked={localStorage.getItem("private")}
         />
         <div className="justify-self-center lg:justify-self-end">
-          <Button
-            className="m-5"
-            href={publicState ? "/notes/save-local" : "/notes/publish"}
-          >
-            <IconWithText
-              reverse={true}
-              icon={
-                <ChevronDoubleRightIcon className="transform translate-z-0 h-7 w-7" />
-              }
-            >
-              {publicState ? "Сохранить" : "Опубликовать"}
-            </IconWithText>
-          </Button>
+          <ButtonWithIcon
+            icon={ChevronDoubleRightIcon}
+            text={publicState ? "Опубликовать" : "Сохранить"}
+            reverse={true}
+            href={publicState ? "/notes/publish" : "/notes/save-local"}
+            className="m-1"
+          />
         </div>
       </div>
     </div>

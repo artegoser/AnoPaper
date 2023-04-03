@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import printDate from "../components/utils";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
-import { Button, IconWithText } from "../components/button";
+import { ButtonWithIcon } from "../components/button";
 
 function PubNote() {
   let params = useParams();
@@ -37,26 +37,19 @@ function PubNote() {
       });
   else {
     if (note.save !== false) {
+      localStorage.setItem("NotePubTime", note.time);
       localStorage.setItem("NoteName", note.name);
-      localStorage.setItem(
-        "NoteText",
-        `*(публичная заметка) (была опубликована в ${printDate(
-          note.time
-        )})*  \n${note.text}`
-      );
+      localStorage.setItem("NoteText", note.text);
       return <Navigate to="/notes/save-local" replace={true} />;
     } else {
       return (
         <div className="">
-          <Button className="mb-4" href="/">
-            <IconWithText
-              icon={
-                <ChevronDoubleLeftIcon className="transform translate-z-0 h-7 w-7" />
-              }
-            >
-              Писать
-            </IconWithText>
-          </Button>
+          <ButtonWithIcon
+            className="mb-4"
+            href="/"
+            text="Писать"
+            icon={ChevronDoubleLeftIcon}
+          />
           <div className="border border-blue-300 rounded-lg p-4">
             <div className="grid grid-cols-1 lg:grid-cols-2">
               <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">
