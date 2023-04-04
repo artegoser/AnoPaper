@@ -1,5 +1,8 @@
 import { ButtonWithIcon } from "../components/button";
-import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronDoubleRightIcon,
+  DocumentTextIcon,
+} from "@heroicons/react/24/outline";
 import { CheckBox } from "../components/checkbox";
 import { useState } from "react";
 import RenderMarkdown from "../components/markdown";
@@ -12,8 +15,12 @@ import rehypeParse from "rehype-parse";
 import remarkStringify from "remark-stringify";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import { SettingsCheckBox } from "../components/settingsInputs";
+import {
+  SettingsCheckBox,
+  SettingsPlaceholder,
+} from "../components/settingsInputs";
 import { inputStyle } from "../components/styles";
+import { Complete } from "../components/openai";
 
 function CreateNote() {
   const [preview, setPreview] = useState(false);
@@ -126,6 +133,23 @@ function CreateNote() {
             className="m-1"
           />
         </div>
+
+        {settings.additionalFeatures && (
+          <div className="justify-self-start lg:justify-self-start">
+            <SettingsPlaceholder text={locals.AdditionalFeatures} />
+            {!!settings.openAiKey && (
+              <ButtonWithIcon
+                icon={DocumentTextIcon}
+                text={locals.AIComplete}
+                className="m-1"
+                w="w-full"
+                onClick={() => {
+                  Complete(setText);
+                }}
+              />
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -41,6 +41,8 @@ let en = {
   Delete: "Delete",
   Open: "Open",
   NoNotesYet: "No notes yet",
+  AIComplete: "Continue Note (AI)",
+  AdditionalFeatures: "Additional features",
 };
 
 export default en;

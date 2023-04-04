@@ -2,6 +2,7 @@ import {
   SettingsCheckBox,
   SettingsTextInput,
   SettingsSelectInput,
+  SettingsPlaceholder,
 } from "../components/settingsInputs";
 import { reRenderPage } from "../components/utils";
 import Locales from "../localisation/main";
@@ -38,15 +39,18 @@ function Settings() {
       <SettingsCheckBox
         label={locals.EditPreview}
         title={locals.EditPreviewWarn}
-        checked={settings.editPreview}
         settingName="editPreview"
       />
 
       <SettingsCheckBox
         label={locals.PublicNote}
         title={locals.PublicNoteTitle}
-        checked={settings.publicNote}
         settingName="publicNote"
+      />
+
+      <SettingsCheckBox
+        label={locals.AdditionalFeatures}
+        settingName="additionalFeatures"
       />
 
       <SettingsPlaceholder text={locals.Interface} />
@@ -84,14 +88,6 @@ function Settings() {
         secret
       />
     </div>
-  );
-}
-
-function SettingsPlaceholder({ text }) {
-  return (
-    <h1 className="text-center lg:text-left leading-tight text-xl font-semibold">
-      {text}
-    </h1>
   );
 }
 

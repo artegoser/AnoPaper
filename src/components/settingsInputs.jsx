@@ -78,4 +78,17 @@ function SettingsSelectInput({
   );
 }
 
-export { SettingsCheckBox, SettingsTextInput, SettingsSelectInput };
+function SettingsPlaceholder({ text }) {
+  return (
+    <h1 className="text-center lg:text-left leading-tight text-xl font-semibold">
+      {text}
+    </h1>
+  );
+}
+
+export {
+  SettingsCheckBox,
+  SettingsTextInput,
+  SettingsSelectInput,
+  SettingsPlaceholder,
+};

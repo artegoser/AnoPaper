@@ -42,6 +42,8 @@ let ru = {
   Delete: "Удалить",
   Open: "Открыть",
   NoNotesYet: "Заметок пока нет",
+  AIComplete: "Продолжить заметку (ИИ)",
+  AdditionalFeatures: "Дополнительные функции",
 };
 
 export default ru;

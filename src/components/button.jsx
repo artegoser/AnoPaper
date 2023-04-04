@@ -5,7 +5,11 @@ function Button(props) {
     <Link to={props.href} className={props.className}>
       <div
         onClick={props.onClick}
-        className={`transition-transform w-48 ease-[cubic-bezier(.69,.58,.32,1.69)] hover:scale-105  p-2 pl-6 text-lg bg-zinc-100 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-800 rounded-2xl ${props.className}`}
+        className={`transition-transform ${
+          props.w ? props.w : "w-48"
+        } ease-[cubic-bezier(.69,.58,.32,1.69)] hover:scale-105  p-2 pl-6 text-lg bg-zinc-100 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-800 rounded-2xl ${
+          props.className
+        }`}
       >
         {props.children}
       </div>
@@ -23,9 +27,9 @@ function IconWithText(props) {
     );
   }
   return (
-    <div className="grid grid-cols-4">
+    <div className="grid place-content-start grid-cols-4">
       <div>{props.icon}</div>
-      <div className="grid-span-3">{props.children}</div>
+      <div className="justify-self-start col-span-3">{props.children}</div>
     </div>
   );
 }
@@ -36,6 +40,7 @@ function ButtonWithIcon(props) {
       href={props.href}
       className={props.className}
       onClick={props.onClick}
+      w={props.w}
     >
       <IconWithText
         reverse={props.reverse}
