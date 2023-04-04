@@ -16,10 +16,10 @@ function Publish() {
       };
 
       if (!note.name) {
-        err = "Заметка не была опубликована, так как отсутствует название.";
+        err = locals.PubErrorMsgNoName;
       }
       if (!note.text) {
-        err = "Заметка не была опубликована, так как отсутствует текст.";
+        err = locals.PubErrorMsgNoText;
       }
 
       fetch(`/publish`, {

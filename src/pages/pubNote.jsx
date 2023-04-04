@@ -1,7 +1,7 @@
 import RenderMarkdown from "../components/markdown";
 import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import printDate from "../components/utils";
+import { printDate } from "../components/utils";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
 import { ButtonWithIcon } from "../components/button";
 

@@ -14,17 +14,17 @@ function NotePage() {
         icon={ChevronDoubleLeftIcon}
         className="mb-4"
         href="/notes"
-        text="Заметки"
+        text={locals.Notes}
       />
 
-      {note ? <Note note={note} /> : <div>Заметки не существует.</div>}
+      {note ? <Note note={note} /> : <div>{locals.NoteNotExists}</div>}
       {note && (
         <div className="grid grid-cols-1">
           <div className="justify-self-center lg:justify-self-end">
             <ButtonWithIcon
               className="mt-4"
               href="/notes"
-              text="Удалить"
+              text={locals.Delete}
               icon={TrashIcon}
               onClick={() => {
                 let notesObj = localStorage.getObj("Notes");

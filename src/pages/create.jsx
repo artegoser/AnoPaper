@@ -3,7 +3,7 @@ import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import { CheckBox } from "../components/checkbox";
 import { useState } from "react";
 import RenderMarkdown from "../components/markdown";
-import printDate from "../components/utils";
+import { printDate } from "../components/utils";
 import rehypeRemark from "rehype-remark/lib";
 import ContentEditable from "react-contenteditable";
 import ReactDOMServer from "react-dom/server";
@@ -41,11 +41,11 @@ function CreateNote() {
     <div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <h2 className="text-center lg:text-left leading-tight text-2xl font-bold">
-          {`${preview ? "" : "Написать заметку"}`}
+          {`${preview ? "" : locals.WriteNote}`}
         </h2>
         <CheckBox
           className="justify-self-center lg:justify-self-end"
-          label="Предпросмотр"
+          label={locals.Preview}
           id="preview"
           onClick={(val) => {
             setText(localStorage.getItem("NoteText"));
@@ -60,7 +60,7 @@ function CreateNote() {
         className={`mb-2 md:w-1/6 w-full ${inputStyle} ${
           preview ? "hidden" : ""
         }`}
-        placeholder="Название заметки..."
+        placeholder={locals.NoteName}
         maxLength={64}
         value={localStorage.getItem("NoteName") || ""}
         onChange={(e) => {
@@ -75,7 +75,7 @@ function CreateNote() {
           ${preview ? "hidden" : ""}
         `}
         rows="10"
-        placeholder="Ваша заметка начинается здесь. Можно использовать markdown..."
+        placeholder={locals.NotePlaceholder}
         maxLength={5000}
         onChange={(e) => {
           setText(e.target.value);
@@ -108,8 +108,8 @@ function CreateNote() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-full">
         <SettingsCheckBox
-          label="Публичная заметка"
-          title="Если включено, то заметка будет видна всем пользователям"
+          label={locals.PublicNote}
+          title={locals.PublicNoteTitle}
           checked={settings.publicNote}
           settingName="publicNote"
           className="justify-self-center lg:justify-self-start"
@@ -120,7 +120,7 @@ function CreateNote() {
         <div className="justify-self-center lg:justify-self-end">
           <ButtonWithIcon
             icon={ChevronDoubleRightIcon}
-            text={publicState ? "Опубликовать" : "Сохранить"}
+            text={publicState ? locals.Publish : locals.Save}
             reverse={true}
             href={publicState ? "/notes/publish" : "/notes/save-local"}
             className="m-1"

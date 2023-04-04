@@ -12,6 +12,8 @@ import PubNoteSafe from "./pages/pubNoteSafe";
 import RenderMarkdown from "./components/markdown";
 import socket from "./components/socket";
 import Settings from "./pages/settings";
+import Locales from "./localisation/main";
+import { useState } from "react";
 
 function App() {
   Storage.prototype.setObj = function (key, obj) {
@@ -21,10 +23,24 @@ function App() {
     return JSON.parse(this.getItem(key)) || {};
   };
 
+  const [key, setKey] = useState(Math.random());
+
   window.settings = localStorage.getObj("settings") || {};
+  window.locals =
+    Locales[window.settings.language] ||
+    Locales[navigator.language] ||
+    Locales[navigator.userLanguage] ||
+    Locales.en;
+
+  window.addEventListener("reRenderPage", () => {
+    setKey(Math.random());
+  });
 
   return (
-    <div className="grid grid-cols-4  lg:grid-cols-5  gap-10 text-black dark:text-white">
+    <div
+      className="grid grid-cols-4  lg:grid-cols-5  gap-10 text-black dark:text-white"
+      key={key}
+    >
       <Menu />
       <div className="col-span-4 p-5 m-4 rounded-2xl">
         <Routes>

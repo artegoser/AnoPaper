@@ -9,6 +9,12 @@ function PubNoteSafe() {
   let params = useParams();
 
   let [note, setNote] = useState(false);
+  let nullNote = {
+    text: locals.PubNoteNotExist,
+    name: locals.Idontexists,
+    time: Date.now(),
+    code: 0,
+  };
 
   if (note === false)
     fetch(`/get-note/safe/${params.id}`)
@@ -20,21 +26,11 @@ function PubNoteSafe() {
             setNote(data);
           })
           .catch(() => {
-            setNote({
-              text: "Такой публичной заметки не сущуествует",
-              name: "Меня не существует",
-              time: Date.now(),
-              code: 0,
-            });
+            setNote(nullNote);
           });
       })
       .catch(() => {
-        setNote({
-          text: "Такой публичной заметки не сущуествует",
-          name: "Меня не существует",
-          time: Date.now(),
-          code: 0,
-        });
+        setNote(nullNote);
       });
 
   return (
@@ -42,7 +38,7 @@ function PubNoteSafe() {
       <ButtonWithIcon
         className="mb-4"
         href="/"
-        text="Писать"
+        text={locals.Write}
         icon={ChevronDoubleLeftIcon}
       />
 
@@ -50,8 +46,7 @@ function PubNoteSafe() {
         <div className="p-4 mb-2">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <h2 className="font-medium text-center lg:text-left p-2">
-              Ссылка для отправки публичной заметки. При переходе на эту ссылку,
-              заметка исчезнет с сервера и будет сохранена локально.
+              {locals.PubUrlPlaceholder}
             </h2>
             <CopyToClipboard
               text={`${window.location.origin}/pubNotes/${params.id}`}

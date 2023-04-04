@@ -1,6 +1,6 @@
 import { ButtonWithIcon } from "../components/button";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
-import printDate from "../components/utils";
+import { printDate } from "../components/utils";
 
 function Notes() {
   let notes = Object.entries(localStorage.getObj("Notes"))
@@ -23,7 +23,7 @@ function Notes() {
                 href={`/notes/${val[0]}`}
                 reverse={true}
                 icon={ChevronDoubleRightIcon}
-                text="Перейти"
+                text={locals.Open}
               />
             </div>
           </div>
@@ -34,7 +34,7 @@ function Notes() {
   if (notes.length === 0)
     return (
       <div className="md">
-        <h3>Заметок пока нет</h3>
+        <h3>{locals.NoNotesYet}</h3>
       </div>
     );
   return notes;

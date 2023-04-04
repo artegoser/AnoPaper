@@ -1,5 +1,5 @@
 import RenderMarkdown from "../components/markdown";
-import printDate from "./utils";
+import { printDate } from "./utils";
 
 function Note({ note }) {
   return (

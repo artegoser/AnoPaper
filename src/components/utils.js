@@ -13,4 +13,8 @@ function printDate(time) {
   return dateStr;
 }
 
-export default printDate;
+function reRenderPage() {
+  window.dispatchEvent(new Event("reRenderPage"));
+}
+
+export { printDate, reRenderPage };
