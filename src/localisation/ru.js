@@ -44,6 +44,9 @@ let ru = {
   NoNotesYet: "Заметок пока нет",
   AIComplete: "Продолжить заметку (ИИ)",
   AdditionalFeatures: "Дополнительные функции",
+  CollabEdit: "Совместное редактрование",
+  Password: "Пароль",
+  CollabEditPassword: "Пароль для совместного редактирования",
 };
 
 export default ru;

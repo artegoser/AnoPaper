@@ -17,6 +17,31 @@ if (!fs.existsSync("./notes")) {
   fs.mkdirSync("./notes");
 }
 
+io.on("connection", (socket) => {
+  socket.on("nameChanged", ({ name, room }) => {
+    socket.to(room).emit("nameChanged", {
+      name,
+    });
+  });
+
+  socket.on("textChanged", ({ text, room }) => {
+    socket.to(room).emit("textChanged", {
+      text,
+    });
+  });
+
+  socket.on("joinRoom", (room) => {
+    let rooms = Array.from(io.sockets.adapter.sids.get(socket.id));
+
+    for (let room of rooms) {
+      if (socket.id != room) {
+        socket.leave(room);
+      }
+    }
+    socket.join(room);
+  });
+});
+
 app.use(bodyParser.json());
 
 app.post("/publish", function (req, res) {

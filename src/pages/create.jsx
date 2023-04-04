@@ -22,6 +22,26 @@ import {
 import { inputStyle } from "../components/styles";
 import { Complete } from "../components/openai";
 
+function nameUpdate(e) {
+  if (Date.now() - window.lastSocketUpdate > window.socketTimeout) {
+    socket.emit("nameChanged", {
+      name: e.target.value,
+      room: settings.CollabEditPassword,
+    });
+    window.lastSocketUpdate = Date.now();
+  }
+}
+
+function textUpdate(e) {
+  if (Date.now() - window.lastSocketUpdate > window.socketTimeout) {
+    socket.emit("textChanged", {
+      text: e.target.value,
+      room: settings.CollabEditPassword,
+    });
+    window.lastSocketUpdate = Date.now();
+  }
+}
+
 function CreateNote() {
   const [preview, setPreview] = useState(false);
   const [publicState, setPublicState] = useState(settings.publicNote);
@@ -42,6 +62,32 @@ function CreateNote() {
     md = md.value.trim();
 
     localStorage.setItem("NoteText", md);
+
+    if (settings.CollabEdit === true) {
+      socket.emit("textChanged", {
+        text: md,
+        room: settings.CollabEditPassword,
+      });
+    }
+  }
+
+  if (settings.CollabEdit === true) {
+    if (!window.alreadyConnected) {
+      socket.emit("joinRoom", settings.CollabEditPassword);
+      window.alreadyConnected = true;
+      window.lastSocketUpdate = Date.now();
+      window.socketTimeout = 100;
+    }
+
+    socket.on("textChanged", (data) => {
+      setText(data.text);
+      localStorage.setItem("NoteText", data.text);
+    });
+
+    socket.on("nameChanged", (data) => {
+      setName(data.name);
+      localStorage.setItem("NoteName", data.name);
+    });
   }
 
   return (
@@ -73,6 +119,13 @@ function CreateNote() {
         onChange={(e) => {
           setName(e.target.value);
           localStorage.setItem("NoteName", e.target.value);
+
+          if (settings.CollabEdit === true) {
+            nameUpdate(e);
+            setTimeout(() => {
+              nameUpdate(e);
+            }, window.socketTimeout);
+          }
         }}
       />
       <textarea
@@ -87,6 +140,13 @@ function CreateNote() {
         onChange={(e) => {
           setText(e.target.value);
           localStorage.setItem("NoteText", e.target.value);
+
+          if (settings.CollabEdit === true) {
+            textUpdate(e);
+            setTimeout(() => {
+              textUpdate(e);
+            }, window.socketTimeout);
+          }
         }}
         value={localStorage.getItem("NoteText") || ""}
       ></textarea>
@@ -148,6 +208,10 @@ function CreateNote() {
                   }}
                 />
               )}
+              <SettingsCheckBox
+                label={locals.CollabEdit}
+                settingName="CollabEdit"
+              />
             </SettingsSection>
           </div>
         )}

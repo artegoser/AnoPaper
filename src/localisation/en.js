@@ -43,6 +43,9 @@ let en = {
   NoNotesYet: "No notes yet",
   AIComplete: "Continue Note (AI)",
   AdditionalFeatures: "Additional features",
+  CollabEdit: "Collaborative editing",
+  Password: "Password",
+  CollabEditPassword: "Password for collaborative editing",
 };
 
 export default en;

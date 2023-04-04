@@ -12,7 +12,6 @@ import PubNoteSafe from "./pages/pubNoteSafe";
 import RenderMarkdown from "./components/markdown";
 import socket from "./components/socket";
 import Settings from "./pages/settings";
-import Chat from "./pages/chat";
 import Locales from "./localisation/main";
 import { useState } from "react";
 
@@ -55,7 +54,6 @@ function App() {
           <Route path="/pubNotesSafe/:id" element={<PubNoteSafe />} />
           <Route path="/pubError" element={<PubError />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/chat" element={<Chat />} />
           <Route
             path="/about"
             element={

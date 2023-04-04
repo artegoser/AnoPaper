@@ -51,6 +51,17 @@ function Settings() {
           label={locals.AdditionalFeatures}
           settingName="additionalFeatures"
         />
+
+        <SettingsCheckBox label={locals.CollabEdit} settingName="CollabEdit" />
+
+        <SettingsTextInput
+          placeholder={locals.Password}
+          label={locals.CollabEditPassword}
+          settingName="CollabEditPassword"
+          onChange={(e) => {
+            window.alreadyConnected = false;
+          }}
+        />
       </SettingsSection>
 
       <SettingsSection name={locals.Interface}>
