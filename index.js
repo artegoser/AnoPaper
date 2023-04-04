@@ -39,6 +39,7 @@ io.on("connection", (socket) => {
       }
     }
     socket.join(room);
+    socket.to(room).emit("roomJoined");
   });
 });
 

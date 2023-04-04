@@ -22,20 +22,20 @@ import {
 import { inputStyle } from "../components/styles";
 import { Complete } from "../components/openai";
 
-function nameUpdate(e) {
-  if (Date.now() - window.lastSocketUpdate > window.socketTimeout) {
+function nameUpdate(val, force) {
+  if (Date.now() - window.lastSocketUpdate > window.socketTimeout || force) {
     socket.emit("nameChanged", {
-      name: e.target.value,
+      name: val,
       room: settings.CollabEditPassword,
     });
     window.lastSocketUpdate = Date.now();
   }
 }
 
-function textUpdate(e) {
-  if (Date.now() - window.lastSocketUpdate > window.socketTimeout) {
+function textUpdate(val, force) {
+  if (Date.now() - window.lastSocketUpdate > window.socketTimeout || force) {
     socket.emit("textChanged", {
-      text: e.target.value,
+      text: val,
       room: settings.CollabEditPassword,
     });
     window.lastSocketUpdate = Date.now();
@@ -88,6 +88,11 @@ function CreateNote() {
       setName(data.name);
       localStorage.setItem("NoteName", data.name);
     });
+
+    socket.on("roomJoined", (data) => {
+      nameUpdate(localStorage.getItem("NoteName"), true);
+      textUpdate(localStorage.getItem("NoteText"), true);
+    });
   }
 
   return (
@@ -121,9 +126,9 @@ function CreateNote() {
           localStorage.setItem("NoteName", e.target.value);
 
           if (settings.CollabEdit === true) {
-            nameUpdate(e);
+            nameUpdate(e.target.value);
             setTimeout(() => {
-              nameUpdate(e);
+              nameUpdate(e.target.value);
             }, window.socketTimeout);
           }
         }}
@@ -142,9 +147,9 @@ function CreateNote() {
           localStorage.setItem("NoteText", e.target.value);
 
           if (settings.CollabEdit === true) {
-            textUpdate(e);
+            textUpdate(e.target.value);
             setTimeout(() => {
-              textUpdate(e);
+              textUpdate(e.target.value);
             }, window.socketTimeout);
           }
         }}

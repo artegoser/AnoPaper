@@ -36,6 +36,7 @@ function SettingsTextInput({
         type={secret ? "password" : "text"}
         placeholder={placeholder}
         title={title}
+        autoComplete="new-password"
         defaultValue={window.settings[settingName]}
         onChange={(e) => {
           window.settings[settingName] = e.target.value;
