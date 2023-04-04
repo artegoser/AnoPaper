@@ -17,7 +17,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import {
   SettingsCheckBox,
-  SettingsPlaceholder,
+  SettingsSection,
 } from "../components/settingsInputs";
 import { inputStyle } from "../components/styles";
 import { Complete } from "../components/openai";
@@ -136,18 +136,19 @@ function CreateNote() {
 
         {settings.additionalFeatures && (
           <div className="justify-self-start lg:justify-self-start">
-            <SettingsPlaceholder text={locals.AdditionalFeatures} />
-            {!!settings.openAiKey && (
-              <ButtonWithIcon
-                icon={DocumentTextIcon}
-                text={locals.AIComplete}
-                className="m-1"
-                w="w-full"
-                onClick={() => {
-                  Complete(setText);
-                }}
-              />
-            )}
+            <SettingsSection name={locals.AdditionalFeatures}>
+              {!!settings.openAiKey && (
+                <ButtonWithIcon
+                  icon={DocumentTextIcon}
+                  text={locals.AIComplete}
+                  className="m-1"
+                  w="w-full"
+                  onClick={() => {
+                    Complete(setText);
+                  }}
+                />
+              )}
+            </SettingsSection>
           </div>
         )}
       </div>
