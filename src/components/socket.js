@@ -17,6 +17,7 @@ function onFooEvent() {
 }
 
 function onSync({ settings, Notes, NoteText, NoteName }) {
+  console.log(settings, Notes, NoteText, NoteName);
   localStorage.setItem("Notes", Notes);
   localStorage.setItem("NoteText", NoteText);
   localStorage.setItem("NoteName", NoteName);
