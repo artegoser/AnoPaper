@@ -209,7 +209,7 @@ function CreateNote() {
                   className="m-1"
                   w="w-full"
                   onClick={() => {
-                    Complete(setText);
+                    Complete(setText, textUpdate);
                   }}
                 />
               )}

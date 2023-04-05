@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from "openai";
 
-async function Complete(setText) {
+async function Complete(setText, textUpdate) {
   document.body.style.cursor = "wait";
 
   let initText = localStorage.getItem("NoteText");
@@ -24,6 +24,10 @@ async function Complete(setText) {
 
   localStorage.setItem("NoteText", totalText);
   setText(totalText);
+
+  if (settings.CollabEdit === true) {
+    textUpdate(totalText, true);
+  }
 
   document.body.style.cursor = "default";
 }

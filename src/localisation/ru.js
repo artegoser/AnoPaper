@@ -47,6 +47,10 @@ let ru = {
   CollabEdit: "Совместное редактирование",
   Password: "Пароль",
   CollabEditPassword: "Пароль для совместного редактирования",
+  SyncPassword: "Пароль для синхронизации",
+  BroadcastSync: "Получение заметок, настроек с другого устройства",
+  SyncAll: "Отправить данные",
+  Sync: "Синхронизация",
 };
 
 export default ru;

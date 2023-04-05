@@ -41,6 +41,18 @@ io.on("connection", (socket) => {
     socket.join(room);
     socket.to(room).emit("roomJoined");
   });
+
+  socket.on("leaveRoom", () => {
+    for (let room of rooms) {
+      if (socket.id != room) {
+        socket.leave(room);
+      }
+    }
+  });
+
+  socket.on("broadcastSync", ({ data, room }) => {
+    socket.to(room).emit("broadcastSync", data);
+  });
 });
 
 app.use(bodyParser.json());

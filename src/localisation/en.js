@@ -45,7 +45,11 @@ let en = {
   AdditionalFeatures: "Additional features",
   CollabEdit: "Collaborative editing",
   Password: "Password",
+  SyncPassword: "Sync password",
   CollabEditPassword: "Password for collaborative editing",
+  BroadcastSync: "Getting notes, settings from another device",
+  SyncAll: "Send data to all devices",
+  Sync: "Sync",
 };
 
 export default en;

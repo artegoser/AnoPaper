@@ -64,7 +64,7 @@
   }
 
   .md table {
-    @apply w-1/2;
+    @apply w-full lg:w-1/2;
     border-style: hidden;
   }
 

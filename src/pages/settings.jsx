@@ -6,6 +6,8 @@ import {
 } from "../components/settingsInputs";
 import { reRenderPage } from "../components/utils";
 import Locales from "../localisation/main";
+import { ButtonWithIcon } from "../components/button";
+import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 
 function Settings() {
   return (
@@ -58,8 +60,46 @@ function Settings() {
           placeholder={locals.Password}
           label={locals.CollabEditPassword}
           settingName="CollabEditPassword"
-          onChange={(e) => {
+          onChange={() => {
             window.alreadyConnected = false;
+          }}
+        />
+      </SettingsSection>
+
+      <SettingsSection name={locals.Sync}>
+        <SettingsCheckBox
+          label={locals.BroadcastSync}
+          onChange={(e) => {
+            if (e.target.checked) {
+              socket.emit("joinRoom", settings.syncPassword);
+            } else {
+              socket.emit("leaveRoom");
+            }
+          }}
+        />
+
+        <SettingsTextInput
+          placeholder={locals.Password}
+          label={locals.SyncPassword}
+          secret
+          settingName="SyncPassword"
+        />
+
+        <ButtonWithIcon
+          icon={ChevronDoubleRightIcon}
+          text={locals.SyncAll}
+          className="m-1"
+          w="w-full lg:w-96"
+          onClick={() => {
+            socket.emit("broadcastSync", {
+              data: {
+                settings: localStorage.getItem("settings"),
+                Notes: localStorage.getItem("Notes"),
+                NoteText: localStorage.getItem("NoteText"),
+                NoteName: localStorage.getItem("NoteName"),
+              },
+              room: settings.syncPassword,
+            });
           }}
         />
       </SettingsSection>

@@ -9,9 +9,8 @@ function SettingsCheckBox({ label, title, className, settingName, onClick }) {
       checked={settings[settingName]}
       className={className}
       onClick={(e) => {
-        window.settings[settingName] = e.target.checked;
-        localStorage.setObj("settings", window.settings);
-        onClick && onClick(e);
+        !!settingName && setSetting(settingName, e.target.checked);
+        !!onClick && onClick(e);
       }}
     />
   );
@@ -39,13 +38,17 @@ function SettingsTextInput({
         autoComplete="new-password"
         defaultValue={window.settings[settingName]}
         onChange={(e) => {
-          window.settings[settingName] = e.target.value;
-          localStorage.setObj("settings", window.settings);
-          onChange && onChange(e);
+          !!settingName && setSetting(settingName, e.target.value);
+          !!onChange && onChange(e);
         }}
       />
     </div>
   );
+}
+
+function setSetting(settingName, value) {
+  window.settings[settingName] = value;
+  localStorage.setObj("settings", window.settings);
 }
 
 function SettingsSelectInput({
@@ -64,9 +67,8 @@ function SettingsSelectInput({
         className={`${inputStyle} ${settingsAddInput} m-2 ${className}`}
         defaultValue={window.settings[settingName]}
         onChange={(e) => {
-          window.settings[settingName] = e.target.value;
-          localStorage.setObj("settings", window.settings);
-          onChange && onChange(e);
+          !!settingName && setSetting(settingName, e.target.value);
+          !!onChange && onChange(e);
         }}
       >
         {options.map((option) => (
