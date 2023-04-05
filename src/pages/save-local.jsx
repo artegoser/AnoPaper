@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+import { printDate } from "../components/utils";
 
 function uuidv4() {
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
@@ -19,10 +20,14 @@ function Save() {
 
   let notesObj = localStorage.getObj("Notes");
 
+  let time = Date.now();
+
   notesObj[id] = {
+    id,
     name,
     text,
-    time: Date.now(),
+    time,
+    textTime: printDate(time),
     pubTime,
     pub: !!pubTime,
   };

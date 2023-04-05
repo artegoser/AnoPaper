@@ -97,4 +97,5 @@ export {
   SettingsTextInput,
   SettingsSelectInput,
   SettingsSection,
+  setSetting,
 };

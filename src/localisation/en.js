@@ -50,6 +50,8 @@ let en = {
   BroadcastSync: "Getting notes, settings from another device",
   SyncAll: "Send data to all devices",
   Sync: "Sync",
+  Search: "Search",
+  NoNotesFound: "No notes found",
 };
 
 export default en;

@@ -51,6 +51,8 @@ let ru = {
   BroadcastSync: "Получение заметок, настроек с другого устройства",
   SyncAll: "Отправить данные",
   Sync: "Синхронизация",
+  Search: "Поиск",
+  NoNotesFound: "Заметок не найдено",
 };
 
 export default ru;

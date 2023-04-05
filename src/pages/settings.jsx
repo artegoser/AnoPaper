@@ -3,6 +3,7 @@ import {
   SettingsTextInput,
   SettingsSelectInput,
   SettingsSection,
+  setSetting,
 } from "../components/settingsInputs";
 import { reRenderPage } from "../components/utils";
 import Locales from "../localisation/main";
@@ -125,6 +126,7 @@ function Settings() {
               Locales[navigator.userLanguage] ||
               Locales.en;
 
+            setSetting("newNotes", false);
             reRenderPage();
           }}
         />
