@@ -71,7 +71,7 @@ function Settings() {
           label={locals.BroadcastSync}
           onChange={(e) => {
             if (e.target.checked) {
-              socket.emit("joinRoom", settings.syncPassword);
+              socket.emit("joinRoom", settings.SyncPassword);
             } else {
               socket.emit("leaveRoom");
             }
@@ -98,7 +98,7 @@ function Settings() {
                 NoteText: localStorage.getItem("NoteText"),
                 NoteName: localStorage.getItem("NoteName"),
               },
-              room: settings.syncPassword,
+              room: settings.SyncPassword,
             });
           }}
         />
