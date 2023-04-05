@@ -69,9 +69,8 @@ function Settings() {
       <SettingsSection name={locals.Sync}>
         <SettingsCheckBox
           label={locals.BroadcastSync}
-          onChange={(e) => {
+          onClick={(e) => {
             if (e.target.checked) {
-              console.log("Broadcasting sync");
               socket.emit("joinRoom", settings.SyncPassword);
             } else {
               socket.emit("leaveRoom");

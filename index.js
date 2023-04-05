@@ -31,7 +31,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("joinRoom", (room) => {
-    console.log("joinRoom", room);
     let rooms = Array.from(io.sockets.adapter.sids.get(socket.id));
 
     for (let room of rooms) {
@@ -52,7 +51,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("broadcastSync", ({ data, room }) => {
-    console.log("broadcastSync", room);
     socket.to(room).emit("broadcastSync", data);
   });
 });
