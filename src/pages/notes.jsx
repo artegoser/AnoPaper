@@ -22,6 +22,8 @@ function Notes() {
   let n = Object.values(localStorage.getObj("Notes"));
 
   let fuse = new Fuse(n, {
+    includeScore: true,
+    useExtendedSearch: true,
     keys: ["name", "text", "textTime", "tags"],
   });
 
@@ -32,7 +34,7 @@ function Notes() {
   if (search !== "") {
     found = found
       .sort((a, b) => {
-        return b.refIndex - a.refIndex;
+        return a.score - b.score;
       })
       .map(({ item }) => item);
   } else {
