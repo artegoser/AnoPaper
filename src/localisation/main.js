@@ -1,22 +1,26 @@
 import ru from "./ru";
 import en from "./en";
+import es from "./es";
 
 let Locales = {
   ru,
   en,
-  "en-US": en,
-  "en-AU": en,
-  "en-BZ": en,
-  "en-CA": en,
-  "en-IE": en,
-  "en-JM": en,
-  "en-NZ": en,
-  "en-ZA": en,
-  "en-TT": en,
-  "en-GB": en,
-  "en-US": en,
-
-  "ru-RU": ru,
+  es,
 };
 
-export default Locales;
+let langChoices = [
+  {
+    value: "ru-RU",
+    label: "Русский",
+  },
+  {
+    value: "en-US",
+    label: "English (US)",
+  },
+  {
+    value: "es",
+    label: "Español",
+  },
+];
+
+export { Locales, langChoices };

@@ -52,6 +52,8 @@ let en = {
   Sync: "Sync",
   Search: "Search",
   NoNotesFound: "No notes found",
+  LocalNote: "Local",
+  PublicNote: "Public",
 };
 
 export default en;

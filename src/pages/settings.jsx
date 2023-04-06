@@ -5,10 +5,10 @@ import {
   SettingsSection,
   setSetting,
 } from "../components/settingsInputs";
-import { reRenderPage } from "../components/utils";
-import Locales from "../localisation/main";
 import { ButtonWithIcon } from "../components/button";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
+import { localesProcess } from "../components/utils";
+import { langChoices } from "../localisation/main";
 
 function Settings() {
   return (
@@ -109,25 +109,10 @@ function Settings() {
         <SettingsSelectInput
           label={locals.Language}
           settingName="language"
-          options={[
-            {
-              value: "ru",
-              label: "Русский",
-            },
-            {
-              value: "en",
-              label: "English (US)",
-            },
-          ]}
-          onChange={(e) => {
-            window.locals =
-              Locales[window.settings.language] ||
-              Locales[navigator.language] ||
-              Locales[navigator.userLanguage] ||
-              Locales.en;
-
+          options={langChoices}
+          onChange={() => {
+            localesProcess(true);
             setSetting("newNotes", false);
-            reRenderPage();
           }}
         />
       </SettingsSection>

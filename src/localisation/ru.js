@@ -53,6 +53,8 @@ let ru = {
   Sync: "Синхронизация",
   Search: "Поиск",
   NoNotesFound: "Заметок не найдено",
+  LocalNote: "Локальная",
+  PublishNote: "Публичная",
 };
 
 export default ru;

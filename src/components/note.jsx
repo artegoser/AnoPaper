@@ -10,7 +10,7 @@ function Note({ note }) {
         </h2>
         <div className="justify-self-center lg:justify-self-end">
           {`${printDate(note.time)} ${
-            note.pub ? "| Публичная" : "| Локальная"
+            note.pub ? `| ${locals.PublicNote}` : `| ${locals.LocalNote}`
           }`}
         </div>
       </div>

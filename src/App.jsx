@@ -12,8 +12,8 @@ import PubNoteSafe from "./pages/pubNoteSafe";
 import RenderMarkdown from "./components/markdown";
 import socket from "./components/socket";
 import Settings from "./pages/settings";
-import Locales from "./localisation/main";
 import { useState } from "react";
+import { localesProcess } from "./components/utils";
 
 function App() {
   Storage.prototype.setObj = function (key, obj) {
@@ -26,11 +26,8 @@ function App() {
   const [key, setKey] = useState(Math.random());
 
   window.settings = localStorage.getObj("settings") || {};
-  window.locals =
-    Locales[window.settings.language] ||
-    Locales[navigator.language] ||
-    Locales[navigator.userLanguage] ||
-    Locales.en;
+
+  localesProcess();
 
   window.addEventListener("reRenderPage", () => {
     setKey(Math.random());
