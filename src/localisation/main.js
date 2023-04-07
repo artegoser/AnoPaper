@@ -1,11 +1,13 @@
 import ru from "./ru";
 import en from "./en";
 import es from "./es";
+import eo from "./eo";
 
 let Locales = {
   ru,
   en,
   es,
+  eo,
 };
 
 let langChoices = [
@@ -20,6 +22,10 @@ let langChoices = [
   {
     value: "es",
     label: "Español",
+  },
+  {
+    value: "eo",
+    label: "Esperanto",
   },
 ];
 
