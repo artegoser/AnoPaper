@@ -5,6 +5,7 @@ import Fuse from "fuse.js";
 import { inputStyle } from "../components/styles";
 import { useState } from "react";
 import { setSetting } from "../components/settingsInputs";
+import RemoveMarkdown from "remove-markdown";
 
 function Notes() {
   if (!settings.newNotes) {
@@ -21,13 +22,23 @@ function Notes() {
 
   let n = Object.values(localStorage.getObj("Notes"));
 
-  let fuse = new Fuse(n, {
-    includeScore: true,
-    useExtendedSearch: true,
-    keys: ["name", "text", "textTime", "tags"],
-  });
-
   let [search, setSearch] = useState("");
+
+  let fuse;
+
+  if (search)
+    fuse = new Fuse(n, {
+      includeScore: true,
+      useExtendedSearch: true,
+      keys: [
+        "name",
+        "textTime",
+        {
+          name: "text",
+          getFn: (obj) => RemoveMarkdown(obj.text),
+        },
+      ],
+    });
 
   let found = search === "" ? n : fuse.search(search);
 
