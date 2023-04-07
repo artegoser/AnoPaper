@@ -22,12 +22,11 @@ function Notes() {
 
   let n = Object.values(localStorage.getObj("Notes"));
 
-  let [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
+  const [indexed, setIndexed] = useState(false);
 
-  let fuse;
-
-  if (search)
-    fuse = new Fuse(n, {
+  if (search && !indexed) {
+    window.fuseIndex = new Fuse(n, {
       includeScore: true,
       useExtendedSearch: true,
       keys: [
@@ -39,8 +38,10 @@ function Notes() {
         },
       ],
     });
+    setIndexed(true);
+  }
 
-  let found = search === "" ? n : fuse.search(search);
+  let found = search === "" ? n : window.fuseIndex.search(search);
 
   if (search !== "") {
     found = found
