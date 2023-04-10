@@ -8,7 +8,7 @@ import {
 
 function Menu() {
   return (
-    <div className="grid grid-cols-1 col-span-4 lg:col-span-1 gap-2 m-4 place-content-start justify-self-center justify-center">
+    <div className="grid grid-cols-2 lg:grid-cols-1 col-span-4 lg:col-span-1 gap-2 mt-4 lg:m-4 place-content-start justify-self-center justify-center">
       <ButtonWithIcon
         icon={MagnifyingGlassCircleIcon}
         text={locals.Notes}
