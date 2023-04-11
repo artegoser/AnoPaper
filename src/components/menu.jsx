@@ -10,13 +10,13 @@ import { useState } from "react";
 
 function Menu() {
   const [hidden, setHidden] = useState(window.innerWidth < 1024 ? true : false);
-  console.log(window.innerWidth);
+
   return (
     <div className="grid grid-cols-2 lg:grid-cols-1 col-span-4 lg:col-span-1 gap-2 mt-4 lg:m-4 place-content-start justify-self-center justify-center">
       {window.innerWidth < 1024 && (
         <ButtonWithIcon
           icon={ChevronDownIcon}
-          text={"Menu"}
+          text={locals.Menu}
           reverse
           className="col-span-2 lg:col-span-1 justify-self-center"
           color="bg-sky-600 hover:bg-sky-800 dark:bg-sky-800 dark:hover:bg-sky-900 text-white"
