@@ -57,6 +57,7 @@ let eo = {
   NoNotesFound: "Neniuj notoj trovitaj",
   LocalNote: "Loka",
   PublicNote: "Publika",
+  Menu: "Menuo",
 };
 
 export default eo;

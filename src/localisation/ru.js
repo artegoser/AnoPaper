@@ -55,6 +55,7 @@ let ru = {
   NoNotesFound: "Заметок не найдено",
   LocalNote: "Локальная",
   PublishNote: "Публичная",
+  Menu: "Меню",
 };
 
 export default ru;

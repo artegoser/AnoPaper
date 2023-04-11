@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
 
-function Button(props) {
+function Button({
+  href,
+  className,
+  onClick,
+  w,
+  children,
+  color = "bg-zinc-100 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-800",
+}) {
   return (
-    <Link to={props.href} className={props.className}>
+    <Link to={href} className={className}>
       <div
-        onClick={props.onClick}
+        onClick={onClick}
         className={`transition-transform ${
-          props.w ? props.w : "w-48"
-        } ease-[cubic-bezier(.69,.58,.32,1.69)] hover:scale-105  p-2 pl-6 text-lg bg-zinc-100 hover:bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-800 rounded-2xl ${
-          props.className
-        }`}
+          w ? w : "w-48"
+        } ease-[cubic-bezier(.69,.58,.32,1.69)] hover:scale-105  p-2 pl-6 text-lg ${color} rounded-2xl ${className}`}
       >
-        {props.children}
+        {children}
       </div>
     </Link>
   );
@@ -41,6 +46,7 @@ function ButtonWithIcon(props) {
       className={props.className}
       onClick={props.onClick}
       w={props.w}
+      color={props.color}
     >
       <IconWithText
         reverse={props.reverse}

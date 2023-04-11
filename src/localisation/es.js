@@ -57,6 +57,7 @@ let es = {
   NoNotesFound: "No se encontraron notas",
   LocalNote: "Local",
   PublicNote: "Pública",
+  Menu: "Menú",
 };
 
 export default es;
