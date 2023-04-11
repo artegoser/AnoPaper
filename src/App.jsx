@@ -35,6 +35,17 @@ function App() {
 
   window.socket = socket;
 
+  if (settings.userName == "bruh") {
+    document.body.classList.add(
+      "transition-transform",
+      "transform",
+      "rotate-180"
+    );
+  } else if (document.body.classList.contains("transition-transform")) {
+    document.body.classList.remove("rotate-180");
+    document.body.classList.add("rotate-0");
+  }
+
   return (
     <div
       className="grid grid-cols-4  lg:grid-cols-5  gap-10 text-black dark:text-white"

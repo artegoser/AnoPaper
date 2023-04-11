@@ -7,10 +7,12 @@ import {
 } from "../components/settingsInputs";
 import { ButtonWithIcon } from "../components/button";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
-import { localesProcess } from "../components/utils";
+import { localesProcess, reRenderPage } from "../components/utils";
 import { langChoices } from "../localisation/main";
 
 function Settings() {
+  let lastName = settings.userName;
+
   return (
     <div>
       <h1 className="text-center lg:text-left leading-tight text-2xl font-bold">
@@ -22,6 +24,15 @@ function Settings() {
           placeholder={locals.Name}
           label={locals.UserName}
           settingName="userName"
+          onChange={() => {
+            if (settings.userName == "bruh") {
+              lastName = settings.userName;
+              reRenderPage();
+            } else if (lastName == "bruh") {
+              lastName = settings.userName;
+              reRenderPage();
+            }
+          }}
         />
 
         <SettingsTextInput

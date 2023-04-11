@@ -23,6 +23,9 @@ function Menu() {
           onClick={() => {
             setHidden(!hidden);
           }}
+          iconClass={`transition-transform transform translate-z-0 h-7 w-7 ${
+            !hidden ? "rotate-180" : "rotate-0"
+          }`}
         />
       )}
       {!hidden && (
