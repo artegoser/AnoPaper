@@ -6,12 +6,20 @@ const fs = require("fs");
 const path = require("path");
 const cryptojs = require("crypto-js");
 const { Server } = require("socket.io");
+const rateLimit = require("express-rate-limit");
 
 require("dotenv").config();
 
 const app = express(),
   server = require("http").createServer(app),
   io = new Server().listen(server);
+
+const limiter = rateLimit({
+  windowMs: 24 * 60 * 60 * 1000, // one day limit
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 if (!fs.existsSync("./notes")) {
   fs.mkdirSync("./notes");
@@ -57,7 +65,7 @@ io.on("connection", (socket) => {
 
 app.use(bodyParser.json());
 
-app.post("/publish", function (req, res) {
+app.post("/publish", limiter, function (req, res) {
   if (isValidNote(req.body)) {
     let hash = sha3(JSON.stringify(req.body));
     req.body.time = Date.now();
