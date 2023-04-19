@@ -1,4 +1,5 @@
 let ru = {
+  about_md: (await (await fetch("localisation/ru/about.md")).text()) || "",
   Notes: "Заметки",
   Write: "Написать",
   Chat: "Чат",
