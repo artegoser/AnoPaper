@@ -1,4 +1,6 @@
 # AnoPaper - Notes service
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fartegoser%2FAnoPaper.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fartegoser%2FAnoPaper?ref=badge_shield)
+
 
 AnoPaper is a notes service that allows you to save notes locally, complete notes using OpenAI API, collaborate on notes with other users and more. The notes supports markdown, MathJax, and GFM syntax.
 
@@ -37,3 +39,6 @@ Contributions are welcome! If you would like to contribute to this project, plea
 ## License
 
 This project is licensed under the GNU General Public License v3.0. See the LICENSE file for more information.
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fartegoser%2FAnoPaper.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fartegoser%2FAnoPaper?ref=badge_large)
