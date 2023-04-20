@@ -13,6 +13,8 @@ Running on: <https://anopaper.artegoser.ru/>
 - Synchronize data across devices
 - Support markdown, MathJax, and GFM syntax
 
+See [changelog](/changelog.md) for more information
+
 ## Local installation
 
 - Setup repository
