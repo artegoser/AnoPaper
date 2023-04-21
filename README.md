@@ -49,6 +49,12 @@ npm run build
   - PORT: The port on which the server will listen.
   - KEY: Secret key to encrypt notes on the server
 
+- Start server
+
+```bash
+npm start
+```
+
 ## Contributing
 
 Contributions are welcome! If you would like to contribute to this project, please create a pull request.
