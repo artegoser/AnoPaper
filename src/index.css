@@ -19,8 +19,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
   /* styles for displaying markdown */
   .md h1 {
@@ -42,7 +40,7 @@
     @apply text-xl;
   }
 
-  .md blockquote{
+  .md blockquote {
     @apply border-l-4 pl-2 rounded-lg ml-4 mt-2 mb-2;
     @apply bg-zinc-200 border-zinc-400;
     @apply dark:bg-zinc-800 dark:border-zinc-600;
@@ -53,7 +51,7 @@
     @apply mb-4 mt-4 border-2 rounded-lg;
   }
 
-  .md ul{
+  .md ul {
     @apply list-disc list-inside ml-4;
   }
 
@@ -61,11 +59,11 @@
     @apply list-disc list-inside;
   }
 
-  .md ol{
+  .md ol {
     @apply list-decimal list-inside ml-4;
   }
 
-  .md li ol{
+  .md li ol {
     @apply list-decimal list-inside ml-4;
   }
 
@@ -85,11 +83,8 @@
     border-style: hidden;
   }
 
-  
-
   .md table thead {
     @apply bg-zinc-200 dark:bg-zinc-800;
-    
   }
 
   .md table tr {
@@ -100,7 +95,10 @@
     @apply w-96 ease-[cubic-bezier(.69,.58,.32,1.69)] hover:scale-105 rounded-2xl hover:drop-shadow-2xl transition duration-500 lg:ml-5;
   }
 
-  .md p, .math-inline { display: inline-block; }
+  .md p,
+  .math-inline {
+    display: inline-block;
+  }
   .md li p {
     display: inline;
   }
@@ -110,11 +108,11 @@
   .blog-pre {
     @apply mt-2 mb-2 relative;
   }
-  
+
   .code-copy-btn {
     @apply text-zinc-400 dark:text-zinc-300 absolute right-2 top-2 cursor-pointer;
   }
-  
+
   .code-copy-btn:hover {
     @apply text-zinc-500 dark:text-zinc-400;
   }

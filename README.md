@@ -15,11 +15,11 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  -->
 
-# AnoPaper - Notes service
+![Anopaper logo with text](docs/imgs/Logo%20With%20Name.png)
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fartegoser%2FAnoPaper.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fartegoser%2FAnoPaper?ref=badge_shield)
 
-AnoPaper is a notes service that allows you to save notes locally, complete notes using OpenAI API, collaborate on notes with other users and more. The notes supports markdown, MathJax, and GFM syntax.
+**AnoPaper is a notes service** that allows you to save notes locally, complete notes using OpenAI API, collaborate on notes with other users and more. The notes supports markdown, MathJax, and GFM syntax.
 
 Running on: <https://anopaper.artegoser.ru/>
 
