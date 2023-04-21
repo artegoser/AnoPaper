@@ -19,7 +19,6 @@
 
 - [ ] Local notes editing
 - [ ] Publish local notes
-- [ ] Change LocalStorage to IndexedDB
 
 # AnoPaper v1.0.0
 
