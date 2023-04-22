@@ -73,7 +73,7 @@ let eo = {
   Search: "Serĉo",
   NoNotesFound: "Neniuj notoj trovitaj",
   LocalNote: "Loka",
-  PublicNote: "Publika",
+  PublishNote: "Publika",
   Menu: "Menuo",
 };
 

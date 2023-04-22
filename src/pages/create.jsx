@@ -65,8 +65,6 @@ function CreateNote() {
   const [text, setText] = useState(localStorage.getItem("NoteText"));
   const [name, setName] = useState(localStorage.getItem("NoteName"));
 
-  const [date, setDate] = useState(Date.now());
-
   async function previewChange(val) {
     let md = await unified()
       .use(remarkGfm)
@@ -106,7 +104,7 @@ function CreateNote() {
       localStorage.setItem("NoteName", data.name);
     });
 
-    socket.on("roomJoined", (data) => {
+    socket.on("roomJoined", () => {
       nameUpdate(localStorage.getItem("NoteName"), true);
       textUpdate(localStorage.getItem("NoteText"), true);
     });
@@ -124,7 +122,6 @@ function CreateNote() {
           id="preview"
           onClick={(val) => {
             setText(localStorage.getItem("NoteText"));
-            setDate(Date.now());
             setPreview(val.target.checked);
           }}
         />

@@ -71,7 +71,6 @@ let en = {
   Search: "Search",
   NoNotesFound: "No notes found",
   LocalNote: "Local",
-  PublicNote: "Public",
   Menu: "Menu",
 };
 

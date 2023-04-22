@@ -48,14 +48,15 @@ function CodeBlock(props) {
 function RenderMarkdown(props) {
   return (
     <ReactMarkdown
-      children={props.children}
       remarkPlugins={[remarkMath, remarkGfm]}
       rehypePlugins={[rehypeMathjax]}
       components={{
         code: CodeBlock,
         pre: Pre,
       }}
-    />
+    >
+      {props.children}
+    </ReactMarkdown>
   );
 }
 

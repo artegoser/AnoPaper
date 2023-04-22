@@ -73,7 +73,7 @@ let es = {
   Search: "Buscar",
   NoNotesFound: "No se encontraron notas",
   LocalNote: "Local",
-  PublicNote: "Pública",
+  PublishNote: "Pública",
   Menu: "Menú",
 };
 

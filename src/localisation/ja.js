@@ -73,7 +73,7 @@ let ja = {
   Search: "検索",
   NoNotesFound: "メモが見つかりません",
   LocalNote: "地元",
-  PublicNote: "公共",
+  PublishNote: "公共",
   Menu: "メニュー",
 };
 

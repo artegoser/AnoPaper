@@ -71,7 +71,7 @@ let zh = {
   Search: "搜索",
   NoNotesFound: "找不到笔记",
   LocalNote: "当地的",
-  PublicNote: "民众",
+  PublishNote: "民众",
   Menu: "菜单",
 };
 
