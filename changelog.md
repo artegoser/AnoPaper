@@ -20,7 +20,7 @@
 - [ ] Local notes editing
 - [ ] Publish local notes
 - [x] Migration notes storage to mongodb (#3)
-- [ ] Settings for publish notes, such as: delete after reading, number of reads before deleting.
+- [ ] Settings for publish notes, such as: delete after reading, number of reads before deleting, adding your own data (name, picture, status in the settings) to the note.
 - [ ] Api for upload photos
 - [ ] Inserting a photo in a note
 
