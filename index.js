@@ -15,15 +15,16 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-const sha3 = require("js-sha3").sha3_512;
 const express = require("express");
 const bodyParser = require("body-parser");
 const isValidNote = require("./note_validator");
 const fs = require("fs");
 const path = require("path");
-const cryptojs = require("crypto-js");
 const { Server } = require("socket.io");
 const rateLimit = require("express-rate-limit");
+const { NotesCore } = require("./core");
+
+let core = new NotesCore();
 
 require("dotenv").config();
 
@@ -33,7 +34,7 @@ const app = express(),
 
 const limiter = rateLimit({
   windowMs: 24 * 60 * 60 * 1000, // one day limit
-  max: 10,
+  max: 50,
   standardHeaders: true,
   legacyHeaders: false,
 });
@@ -82,42 +83,26 @@ io.on("connection", (socket) => {
 
 app.use(bodyParser.json());
 
-app.post("/publish", limiter, function (req, res) {
+app.post("/publish", limiter, async (req, res) => {
   if (isValidNote(req.body)) {
-    let hash = sha3(JSON.stringify(req.body));
-    req.body.time = Date.now();
-    req.body.pub = true;
-    req.body.pubTime = req.body.time;
+    let id = await core.publishNote(req.body);
 
-    try {
-      fs.writeFileSync(
-        `./notes/${hash}.json`,
-        cryptojs.AES.encrypt(
-          JSON.stringify(req.body),
-          process.env.KEY
-        ).toString()
-      );
-      res.send({ id: hash });
-    } catch {
-      res.status(500).send("Failed to write file");
+    if (id) {
+      res.json({ id });
+    } else {
+      res.status(500).send("Publish failed!");
     }
   } else {
     res.status(403).send("Invalid body!");
   }
 });
 
-app.get("/get-note/:delorno/:id", function (req, res) {
-  let path = `./notes/${req.params.id}.json`;
-  try {
-    let data = JSON.parse(
-      cryptojs.AES.decrypt(
-        fs.readFileSync(path, "utf-8"),
-        process.env.KEY
-      ).toString(cryptojs.enc.Utf8)
-    );
-    res.send(data);
-    if (req.params.delorno === "del") fs.unlinkSync(path);
-  } catch {
+app.get("/get-note/:delorno/:id", async (req, res) => {
+  let note = await core.getNote(req.params.id);
+  if (note) {
+    res.json(note);
+    if (req.params.delorno === "del") await core.deleteNote(req.params.id);
+  } else {
     res.status(404).send("There is no such note");
   }
 });
@@ -128,6 +113,8 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./dist", "index.html"));
 });
 
-server.listen(process.env.PORT, () => {
-  console.log(`Listening on port ${process.env.PORT}`);
-});
+core.connect().then(() =>
+  server.listen(process.env.PORT, () => {
+    console.log(`Listening on port ${process.env.PORT}`);
+  })
+);

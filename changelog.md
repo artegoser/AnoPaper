@@ -19,9 +19,8 @@
 
 - [ ] Local notes editing
 - [ ] Publish local notes
-- [ ] Migration notes storage to mongodb
+- [x] Migration notes storage to mongodb
 - [ ] Settings for publish notes, such as: delete after reading, number of reads before deleting.
-
 
 # AnoPaper v1.0.0
 
