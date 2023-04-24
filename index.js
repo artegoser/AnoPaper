@@ -34,7 +34,7 @@ const app = express(),
 
 const limiter = rateLimit({
   windowMs: 24 * 60 * 60 * 1000, // one day limit
-  max: 10,
+  max: 50,
   standardHeaders: true,
   legacyHeaders: false,
 });
