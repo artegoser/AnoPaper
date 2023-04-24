@@ -44,10 +44,7 @@ npm install
 npm run build
 ```
 
-- Create a .env file in the root directory of the project with the following environment variables:
-
-  - PORT: The port on which the server will listen.
-  - KEY: Secret key to encrypt notes on the server
+- Look at .env.example and create your .env file
 
 - Start server
 
