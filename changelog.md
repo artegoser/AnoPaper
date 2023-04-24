@@ -21,6 +21,8 @@
 - [ ] Publish local notes
 - [x] Migration notes storage to mongodb
 - [ ] Settings for publish notes, such as: delete after reading, number of reads before deleting.
+- [ ] Api for upload photos
+- [ ] Inserting a photo in a note
 
 # AnoPaper v1.0.0
 
