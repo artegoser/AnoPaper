@@ -34,6 +34,8 @@ Running on: <https://anopaper.artegoser.ru/>
 
 See [changelog](/changelog.md) for more information
 
+![AI completion gif](docs/imgs/ai_completion.gif)
+
 ## Local installation
 
 - Setup repository
