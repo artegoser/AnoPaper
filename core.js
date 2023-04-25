@@ -32,7 +32,7 @@ class NotesCore {
   async getNote(_id) {
     try {
       let note = await this.notes.findOne({ _id });
-      if (note === null) await this.incStats("receivedNotes");
+      if (note !== null) await this.incStats("receivedNotes");
       return note;
     } catch {
       return null;
