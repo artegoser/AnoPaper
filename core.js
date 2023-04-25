@@ -31,8 +31,11 @@ class NotesCore {
 
   async getNote(_id) {
     try {
-      await this.incReceivedNotes();
-      return await this.notes.findOne({ _id });
+      let note = await this.notes.findOne({ _id });
+
+      if (note === null) await this.incReceivedNotes();
+
+      return note;
     } catch {
       return null;
     }
