@@ -32,9 +32,7 @@ class NotesCore {
   async getNote(_id) {
     try {
       let note = await this.notes.findOne({ _id });
-
-      if (note === null) await this.incReceivedNotes();
-
+      if (note === null) await this.incStats("receivedNotes");
       return note;
     } catch {
       return null;
@@ -43,7 +41,7 @@ class NotesCore {
 
   async deleteNote(_id) {
     try {
-      await this.incDeletedNotes();
+      await this.incStats("deletedNotes");
       return await this.notes.deleteOne({ _id });
     } catch {
       return null;
@@ -60,23 +58,11 @@ class NotesCore {
         { $set: note },
         { upsert: true }
       );
-      await this.incSentNotes();
+      await this.incStats("sentNotes");
       return note._id;
     } catch {
       return null;
     }
-  }
-
-  async incSentNotes() {
-    await this.incStats("sentNotes");
-  }
-
-  async incReceivedNotes() {
-    await this.incStats("receivedNotes");
-  }
-
-  async incDeletedNotes() {
-    await this.incStats("deletedNotes");
   }
 
   async incStats(_id) {
