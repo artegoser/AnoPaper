@@ -50,7 +50,6 @@ class NotesCore {
       note._id = sha3(JSON.stringify(note));
       note.time = Date.now();
       note.pub = true;
-      note.pubTime = note.time;
       await this.notes.updateOne(
         { _id: note._id },
         { $set: note },
