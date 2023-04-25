@@ -39,6 +39,14 @@ class NotesCore {
     }
   }
 
+  async getStats(_id) {
+    try {
+      return await this.stats.findOne({ _id });
+    } catch {
+      return null;
+    }
+  }
+
   async deleteNote(_id) {
     try {
       await this.incStats("deletedNotes");

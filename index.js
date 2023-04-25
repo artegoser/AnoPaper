@@ -107,6 +107,15 @@ app.get("/get-note/:delorno/:id", async (req, res) => {
   }
 });
 
+app.get("/stats/:id", async (req, res) => {
+  let stats = await core.getStats(req.params.id);
+  if (stats) {
+    res.json(stats);
+  } else {
+    res.status(404).send("There is no stats with such id");
+  }
+});
+
 app.use(express.static("dist"));
 
 app.get("*", function (req, res) {
