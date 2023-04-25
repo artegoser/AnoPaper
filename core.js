@@ -31,6 +31,7 @@ class NotesCore {
 
   async getNote(_id) {
     try {
+      await this.incReceivedNotes();
       return await this.notes.findOne({ _id });
     } catch {
       return null;
@@ -39,6 +40,7 @@ class NotesCore {
 
   async deleteNote(_id) {
     try {
+      await this.incDeletedNotes();
       return await this.notes.deleteOne({ _id });
     } catch {
       return null;
@@ -66,6 +68,13 @@ class NotesCore {
     await this.incStats("sentNotes");
   }
 
+  async incReceivedNotes() {
+    await this.incStats("receivedNotes");
+  }
+
+  async incDeletedNotes() {
+    await this.incStats("deletedNotes");
+  }
 
   async incStats(_id) {
     await this.stats.updateOne(
