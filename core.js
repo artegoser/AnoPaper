@@ -26,11 +26,22 @@ class NotesCore {
     let db = connection.db(process.env.MONGO_DB);
 
     this.notes = db.collection("notes");
+    this.stats = db.collection("stats");
   }
 
   async getNote(_id) {
     try {
-      return await this.notes.findOne({ _id });
+      let note = await this.notes.findOne({ _id });
+      if (note !== null) await this.incStats("receivedNotes");
+      return note;
+    } catch {
+      return null;
+    }
+  }
+
+  async getStats(_id) {
+    try {
+      return await this.stats.findOne({ _id });
     } catch {
       return null;
     }
@@ -38,6 +49,7 @@ class NotesCore {
 
   async deleteNote(_id) {
     try {
+      await this.incStats("deletedNotes");
       return await this.notes.deleteOne({ _id });
     } catch {
       return null;
@@ -49,16 +61,24 @@ class NotesCore {
       note._id = sha3(JSON.stringify(note));
       note.time = Date.now();
       note.pub = true;
-      note.pubTime = note.time;
       await this.notes.updateOne(
         { _id: note._id },
         { $set: note },
         { upsert: true }
       );
+      await this.incStats("sentNotes");
       return note._id;
     } catch {
       return null;
     }
+  }
+
+  async incStats(_id) {
+    await this.stats.updateOne(
+      { _id },
+      { $inc: { value: 1 } },
+      { upsert: true }
+    );
   }
 }
 
