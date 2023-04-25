@@ -26,6 +26,7 @@ class NotesCore {
     let db = connection.db(process.env.MONGO_DB);
 
     this.notes = db.collection("notes");
+    this.stats = db.collection("stats");
   }
 
   async getNote(_id) {
@@ -55,10 +56,19 @@ class NotesCore {
         { $set: note },
         { upsert: true }
       );
+      await this.incSentNotes();
       return note._id;
     } catch {
       return null;
     }
+  }
+
+  async incSentNotes() {
+    await this.stats.updateOne(
+      { _id: "sentNotes" },
+      { $inc: { value: 1 } },
+      { upsert: true }
+    );
   }
 }
 
