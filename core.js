@@ -63,8 +63,13 @@ class NotesCore {
   }
 
   async incSentNotes() {
+    await this.incStats("sentNotes");
+  }
+
+
+  async incStats(_id) {
     await this.stats.updateOne(
-      { _id: "sentNotes" },
+      { _id },
       { $inc: { value: 1 } },
       { upsert: true }
     );
