@@ -1,8 +1,10 @@
 ## Anopaper - anonymous notes service
 
-## AnoPaper allows you to save and share notes anonymously.
+---
 
-### Functionality:
+#### AnoPaper allows you to save and share notes anonymously.
+
+##### Functionality:
 
 - Notes support markdown format. For example, the entry: `### Level 3 Heading` would look like this:
 
@@ -13,3 +15,5 @@
 - Public notes are available only by link.
 - When you click on the link, the note is saved locally and deleted from the server.
 - Non-public notes are saved locally and are not sent to the server.`
+
+---

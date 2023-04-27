@@ -85,14 +85,14 @@ function App() {
             path="/about"
             element={
               <>
+                <div className="col-span-4 md">
+                  <RenderMarkdown>{locals.about_md}</RenderMarkdown>
+                </div>
                 <ButtonWithIcon
                   icon={LinkIcon}
                   text={locals.SourceCode}
                   href="https://github.com/artegoser/AnoPaper"
                 />
-                <div className="col-span-4 md">
-                  <RenderMarkdown>{locals.about_md}</RenderMarkdown>
-                </div>
               </>
             }
           />
