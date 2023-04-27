@@ -74,6 +74,7 @@ let en = {
   NoNotesFound: "No notes found",
   LocalNote: "Local",
   Menu: "Menu",
+  SourceCode: "Source code",
 };
 
 export default en;

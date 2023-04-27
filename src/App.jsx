@@ -31,6 +31,8 @@ import socket from "./components/socket";
 import Settings from "./pages/settings";
 import { useState } from "react";
 import { localesProcess } from "./components/utils";
+import { ButtonWithIcon } from "./components/button";
+import { LinkIcon } from "@heroicons/react/24/outline";
 
 function App() {
   Storage.prototype.setObj = function (key, obj) {
@@ -82,9 +84,16 @@ function App() {
           <Route
             path="/about"
             element={
-              <div className="col-span-4 md">
-                <RenderMarkdown>{locals.about_md}</RenderMarkdown>
-              </div>
+              <>
+                <ButtonWithIcon
+                  icon={LinkIcon}
+                  text={locals.SourceCode}
+                  href="https://github.com/artegoser/AnoPaper"
+                />
+                <div className="col-span-4 md">
+                  <RenderMarkdown>{locals.about_md}</RenderMarkdown>
+                </div>
+              </>
             }
           />
           <Route path="/notes" element={<Notes />} />

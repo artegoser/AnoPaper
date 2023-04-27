@@ -76,6 +76,7 @@ let ru = {
   LocalNote: "Локальная",
   PublishNote: "Публичная",
   Menu: "Меню",
+  SourceCode: "Исходный код",
 };
 
 export default ru;
