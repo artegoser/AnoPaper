@@ -15,8 +15,10 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { getNetLocale } from "../components/utils";
+
 let en = {
-  about_md: (await (await fetch("localisation/en/about.md")).text()) || "",
+  about_md: await getNetLocale("en", "about.md"),
   Notes: "Notes",
   Write: "Write",
   Chat: "Chat",

@@ -15,8 +15,10 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { getNetLocale } from "../components/utils";
+
 let ru = {
-  about_md: (await (await fetch("localisation/ru/about.md")).text()) || "",
+  about_md: await getNetLocale("ru", "about.md"),
   Notes: "Заметки",
   Write: "Написать",
   Chat: "Чат",

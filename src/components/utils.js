@@ -44,4 +44,8 @@ function localesProcess(reRender) {
   if (reRender) reRenderPage();
 }
 
-export { printDate, reRenderPage, localesProcess };
+async function getNetLocale(lang, fileName) {
+  return (await (await fetch(`localisation/${lang}/${fileName}`)).text()) || "";
+}
+
+export { printDate, reRenderPage, localesProcess, getNetLocale };
