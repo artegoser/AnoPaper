@@ -53,16 +53,16 @@ function NotePage() {
         edit ? (
           <>
             <NoteNameInput
-              value={note.name}
+              value={name}
               onChange={(e) => setName(e.target.value)}
             />
             <NoteTextArea
-              value={note.text}
+              value={text}
               onChange={(e) => setText(e.target.value)}
             />
             <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-full">
               <NotesAdditionalSettings
-                noteText={note.text}
+                noteText={text}
                 onClick={(text) => {
                   setText(text);
                 }}
@@ -80,13 +80,15 @@ function NotePage() {
           <div className="justify-self-center lg:justify-self-end">
             <ButtonWithIcon
               className="mt-4"
-              text={locals.Edit}
+              text={edit ? locals.Save : locals.Edit}
               icon={PencilIcon}
               onClick={() => {
-                notes[params.id].name = name;
-                notes[params.id].text = text;
+                if (edit) {
+                  notes[params.id].name = name;
+                  notes[params.id].text = text;
 
-                localStorage.setObj("Notes", notes);
+                  localStorage.setObj("Notes", notes);
+                }
 
                 setEdit(!edit);
               }}
