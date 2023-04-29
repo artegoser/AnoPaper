@@ -26,6 +26,7 @@ Running on: <https://anopaper.artegoser.ru/>
 ## Features
 
 - Save notes locally
+- Edit local notes
 - Publish one-time notes (when read, the note is deleted from the server and saved locally)
 - Use OpenAI API to complete notes (with your own api key)
 - Collaborate with other users on notes
