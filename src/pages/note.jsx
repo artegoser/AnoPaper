@@ -37,6 +37,8 @@ function NotePage() {
   let note = notes[params.id];
 
   let [edit, setEdit] = useState(false);
+  let [text, setText] = useState(note.text);
+  let [name, setName] = useState(note.name);
 
   return (
     <div className="">
@@ -52,17 +54,17 @@ function NotePage() {
           <>
             <NoteNameInput
               value={note.name}
-              onChange={(e) => (note.name = e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
             <NoteTextArea
               value={note.text}
-              onChange={(e) => (note.text = e.target.value)}
+              onChange={(e) => setText(e.target.value)}
             />
             <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-full">
               <NotesAdditionalSettings
                 noteText={note.text}
                 onClick={(text) => {
-                  note.text = text;
+                  setText(text);
                 }}
               />
             </div>
@@ -81,11 +83,12 @@ function NotePage() {
               text={locals.Edit}
               icon={PencilIcon}
               onClick={() => {
-                setEdit(!edit);
+                notes[params.id].name = name;
+                notes[params.id].text = text;
 
-                if (edit) {
-                  localStorage.setObj("Notes", notes);
-                }
+                localStorage.setObj("Notes", notes);
+
+                setEdit(!edit);
               }}
             />
             {!edit && (
