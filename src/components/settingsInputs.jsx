@@ -14,9 +14,12 @@
  You should have received a copy of the GNU General Public License
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
-
+/* eslint-disable react-refresh/only-export-components */
 import { CheckBox } from "./checkbox";
 import { inputStyle, settingsAddInput } from "./styles";
+import { ButtonWithIcon } from "./button";
+import { Complete } from "../components/openai";
+import { DocumentTextIcon } from "@heroicons/react/24/outline";
 
 function SettingsCheckBox({ label, title, className, settingName, onClick }) {
   return (
@@ -109,10 +112,73 @@ function SettingsSection({ name, children }) {
   );
 }
 
+function NoteNameInput({ value, onChange, preview }) {
+  return (
+    <input
+      type="text"
+      className={`mb-2 md:w-1/6 w-full ${inputStyle} ${
+        preview ? "hidden" : ""
+      }`}
+      placeholder={locals.NoteName}
+      maxLength={64}
+      value={value}
+      onChange={onChange}
+    />
+  );
+}
+
+function NoteTextArea({ value, onChange, preview }) {
+  return (
+    <textarea
+      className={`
+    ${inputStyle}
+    w-full
+    ${preview ? "hidden" : ""}
+  `}
+      rows="10"
+      placeholder={locals.NotePlaceholder}
+      maxLength={5000}
+      onChange={onChange}
+      value={value}
+    ></textarea>
+  );
+}
+
+function NotesAdditionalSettings() {
+  return (
+    <>
+      {settings.additionalFeatures && (
+        <div className="justify-self-start lg:justify-self-start">
+          <SettingsSection name={locals.AdditionalFeatures}>
+            {!!settings.openAiKey && (
+              <ButtonWithIcon
+                icon={DocumentTextIcon}
+                text={locals.AIComplete}
+                className="m-1"
+                w="w-full"
+                onClick={() => {
+                  Complete(setText, textUpdate);
+                }}
+              />
+            )}
+            <SettingsCheckBox
+              label={locals.CollabEdit}
+              settingName="CollabEdit"
+            />
+          </SettingsSection>
+        </div>
+      )}
+    </>
+  );
+}
+
 export {
   SettingsCheckBox,
   SettingsTextInput,
   SettingsSelectInput,
   SettingsSection,
   setSetting,
+  NoteNameInput,
+  NoteTextArea,
+  NotesAdditionalSettings,
 };

@@ -16,10 +16,7 @@
  */
 
 import { ButtonWithIcon } from "../components/button";
-import {
-  ChevronDoubleRightIcon,
-  DocumentTextIcon,
-} from "@heroicons/react/24/outline";
+import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import { CheckBox } from "../components/checkbox";
 import { useState } from "react";
 import RenderMarkdown from "../components/markdown";
@@ -33,11 +30,11 @@ import remarkStringify from "remark-stringify";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import {
+  NoteNameInput,
+  NoteTextArea,
+  NotesAdditionalSettings,
   SettingsCheckBox,
-  SettingsSection,
 } from "../components/settingsInputs";
-import { inputStyle } from "../components/styles";
-import { Complete } from "../components/openai";
 
 function nameUpdate(val, force) {
   if (Date.now() - window.lastSocketUpdate > window.socketTimeout || force) {
@@ -127,13 +124,7 @@ function CreateNote() {
         />
       </div>
 
-      <input
-        type="text"
-        className={`mb-2 md:w-1/6 w-full ${inputStyle} ${
-          preview ? "hidden" : ""
-        }`}
-        placeholder={locals.NoteName}
-        maxLength={64}
+      <NoteNameInput
         value={localStorage.getItem("NoteName") || ""}
         onChange={(e) => {
           setName(e.target.value);
@@ -146,16 +137,11 @@ function CreateNote() {
             }, window.socketTimeout);
           }
         }}
+        preview={preview}
       />
-      <textarea
-        className={`
-          ${inputStyle}
-          w-full
-          ${preview ? "hidden" : ""}
-        `}
-        rows="10"
-        placeholder={locals.NotePlaceholder}
-        maxLength={5000}
+
+      <NoteTextArea
+        value={localStorage.getItem("NoteText") || ""}
         onChange={(e) => {
           setText(e.target.value);
           localStorage.setItem("NoteText", e.target.value);
@@ -167,8 +153,8 @@ function CreateNote() {
             }, window.socketTimeout);
           }
         }}
-        value={localStorage.getItem("NoteText") || ""}
-      ></textarea>
+        preview={preview}
+      />
 
       {preview && (
         <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -213,27 +199,7 @@ function CreateNote() {
           />
         </div>
 
-        {settings.additionalFeatures && (
-          <div className="justify-self-start lg:justify-self-start">
-            <SettingsSection name={locals.AdditionalFeatures}>
-              {!!settings.openAiKey && (
-                <ButtonWithIcon
-                  icon={DocumentTextIcon}
-                  text={locals.AIComplete}
-                  className="m-1"
-                  w="w-full"
-                  onClick={() => {
-                    Complete(setText, textUpdate);
-                  }}
-                />
-              )}
-              <SettingsCheckBox
-                label={locals.CollabEdit}
-                settingName="CollabEdit"
-              />
-            </SettingsSection>
-          </div>
-        )}
+        <NotesAdditionalSettings />
       </div>
     </div>
   );
