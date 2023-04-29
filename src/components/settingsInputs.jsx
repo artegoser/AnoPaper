@@ -140,6 +140,7 @@ function NoteTextArea({ value, onChange, preview = false }) {
       maxLength={5000}
       onChange={onChange}
       defaultValue={value}
+      id="noteTextArea"
     ></textarea>
   );
 }
@@ -159,8 +160,9 @@ function NotesAdditionalSettings({
                 text={locals.AIComplete}
                 className="m-1"
                 w="w-full"
-                onClick={() => {
-                  let text = Complete(noteText);
+                onClick={async () => {
+                  let text = await Complete(noteText);
+                  document.getElementById("noteTextArea").value = text;
 
                   onClick(text);
                 }}

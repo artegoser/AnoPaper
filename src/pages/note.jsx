@@ -58,13 +58,14 @@ function NotePage() {
               value={note.text}
               onChange={(e) => (note.text = e.target.value)}
             />
-
-            <NotesAdditionalSettings
-              noteText={note.text}
-              onClick={(text) => {
-                note.text = text;
-              }}
-            />
+            <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-full">
+              <NotesAdditionalSettings
+                noteText={note.text}
+                onClick={(text) => {
+                  note.text = text;
+                }}
+              />
+            </div>
           </>
         ) : (
           <Note note={note} />
