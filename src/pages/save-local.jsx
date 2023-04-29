@@ -16,7 +16,7 @@
  */
 
 import { Navigate } from "react-router-dom";
-import { printDate } from "../components/utils";
+import { timestamp2text } from "../components/utils";
 
 function uuidv4() {
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
@@ -44,7 +44,7 @@ function Save() {
     name,
     text,
     time,
-    textTime: printDate(time),
+    textTime: timestamp2text(time),
     pubTime,
     pub: !!pubTime,
   };

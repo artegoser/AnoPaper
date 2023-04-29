@@ -17,7 +17,7 @@
 
 import { Locales } from "../localisation/main";
 
-function printDate(time) {
+function timestamp2text(time) {
   time = new Date(time);
   return time.toLocaleString(settings.language);
 }
@@ -48,4 +48,4 @@ async function getNetLocale(lang, fileName) {
   return (await (await fetch(`localisation/${lang}/${fileName}`)).text()) || "";
 }
 
-export { printDate, reRenderPage, localesProcess, getNetLocale };
+export { timestamp2text, reRenderPage, localesProcess, getNetLocale };

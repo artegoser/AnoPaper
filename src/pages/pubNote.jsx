@@ -18,7 +18,7 @@
 import RenderMarkdown from "../components/markdown";
 import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import { printDate } from "../components/utils";
+import { timestamp2text } from "../components/utils";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
 import { ButtonWithIcon } from "../components/button";
 
@@ -73,7 +73,7 @@ function PubNote() {
                 {note.name || "Загрузка..."}
               </h2>
               <div className="justify-self-center lg:justify-self-end">
-                {printDate(note.time || Date.now())}
+                {timestamp2text(note.time || Date.now())}
               </div>
             </div>
             <div className="w-full md break-words">

@@ -16,7 +16,7 @@
  */
 
 import RenderMarkdown from "../components/markdown";
-import { printDate } from "./utils";
+import { timestamp2text } from "./utils";
 
 function Note({ note }) {
   return (
@@ -26,7 +26,7 @@ function Note({ note }) {
           {note.name}
         </h2>
         <div className="justify-self-center lg:justify-self-end">
-          {`${printDate(note.time)} ${
+          {`${timestamp2text(note.time)} ${
             note.pub ? `| ${locals.PublicNote}` : `| ${locals.LocalNote}`
           }`}
         </div>

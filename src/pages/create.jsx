@@ -20,7 +20,7 @@ import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import { CheckBox } from "../components/checkbox";
 import { useState } from "react";
 import RenderMarkdown from "../components/markdown";
-import { printDate } from "../components/utils";
+import { timestamp2text } from "../components/utils";
 import rehypeRemark from "rehype-remark/lib";
 import ContentEditable from "react-contenteditable";
 import ReactDOMServer from "react-dom/server";
@@ -162,7 +162,7 @@ function CreateNote() {
             {name}
           </h2>
           <div className="justify-self-center lg:justify-self-end">
-            {printDate(Date.now())}
+            {timestamp2text(Date.now())}
           </div>
         </div>
       )}

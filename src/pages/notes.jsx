@@ -17,7 +17,7 @@
 
 import { ButtonWithIcon } from "../components/button";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
-import { printDate } from "../components/utils";
+import { timestamp2text } from "../components/utils";
 import Fuse from "fuse.js";
 import { inputStyle } from "../components/styles";
 import { useState } from "react";
@@ -30,7 +30,7 @@ function Notes() {
     let notes = Object.entries(notesObj);
     for (let [id, note] of notes) {
       note.id = id;
-      note.textTime = printDate(note.time);
+      note.textTime = timestamp2text(note.time);
       notesObj[id] = note;
     }
     localStorage.setObj("Notes", notesObj);
@@ -82,7 +82,7 @@ function Notes() {
           {item.name}
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 justify-self-center lg:justify-self-end">
-          <div className="text-center">{printDate(item.time)}</div>
+          <div className="text-center">{timestamp2text(item.time)}</div>
           <div className="">
             <ButtonWithIcon
               href={`/notes/${item.id}`}

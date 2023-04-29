@@ -15,7 +15,7 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { printDate } from "../components/utils";
+import { timestamp2text } from "../components/utils";
 import { ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
 import { ButtonWithIcon } from "../components/button";
 import { useSearchParams } from "react-router-dom";
@@ -39,7 +39,7 @@ function PubError() {
             {locals.PubError}
           </h2>
           <div className="justify-self-center lg:justify-self-end">
-            {printDate(Date.now())}
+            {timestamp2text(Date.now())}
           </div>
         </div>
         <div className="w-full md">{err ? err : locals.PubErrorMsg}</div>
