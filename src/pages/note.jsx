@@ -18,6 +18,7 @@
 import { useParams } from "react-router-dom";
 import {
   ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
   PencilIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
@@ -92,6 +93,12 @@ function NotePage() {
 
                 setEdit(!edit);
               }}
+            />
+            <ButtonWithIcon
+              className="mt-4"
+              text={locals.Publish}
+              icon={ChevronDoubleRightIcon}
+              href={`/notes/publish?local_id=${params.id}`}
             />
             {!edit && (
               <ButtonWithIcon
