@@ -75,6 +75,7 @@ let en = {
   LocalNote: "Local",
   Menu: "Menu",
   SourceCode: "Source code",
+  Edit: "Edit",
 };
 
 export default en;

@@ -199,7 +199,16 @@ function CreateNote() {
           />
         </div>
 
-        <NotesAdditionalSettings />
+        <NotesAdditionalSettings
+          onClick={(text) => {
+            localStorage.setItem("NoteText", text);
+            setText(text);
+
+            if (settings.CollabEdit === true) {
+              textUpdate(text, true);
+            }
+          }}
+        />
       </div>
     </div>
   );

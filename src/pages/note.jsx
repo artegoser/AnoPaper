@@ -16,14 +16,27 @@
  */
 
 import { useParams } from "react-router-dom";
-import { ChevronDoubleLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronDoubleLeftIcon,
+  PencilIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
 import { ButtonWithIcon } from "../components/button";
 import Note from "../components/note";
+import { useState } from "react";
+import {
+  NoteNameInput,
+  NoteTextArea,
+  NotesAdditionalSettings,
+} from "../components/settingsInputs";
 
 function NotePage() {
   let params = useParams();
 
-  let note = localStorage.getObj("Notes")[params.id];
+  let notes = localStorage.getObj("Notes");
+  let note = notes[params.id];
+
+  let [edit, setEdit] = useState(false);
 
   return (
     <div className="">
@@ -34,23 +47,61 @@ function NotePage() {
         text={locals.Notes}
       />
 
-      {note ? <Note note={note} /> : <div>{locals.NoteNotExists}</div>}
+      {note ? (
+        edit ? (
+          <>
+            <NoteNameInput
+              value={note.name}
+              onChange={(e) => (note.name = e.target.value)}
+            />
+            <NoteTextArea
+              value={note.text}
+              onChange={(e) => (note.text = e.target.value)}
+            />
+
+            <NotesAdditionalSettings
+              noteText={note.text}
+              onClick={(text) => {
+                note.text = text;
+              }}
+            />
+          </>
+        ) : (
+          <Note note={note} />
+        )
+      ) : (
+        <div>{locals.NoteNotExists}</div>
+      )}
       {note && (
         <div className="grid grid-cols-1">
           <div className="justify-self-center lg:justify-self-end">
             <ButtonWithIcon
               className="mt-4"
-              href="/notes"
-              text={locals.Delete}
-              icon={TrashIcon}
+              text={locals.Edit}
+              icon={PencilIcon}
               onClick={() => {
-                let notesObj = localStorage.getObj("Notes");
+                setEdit(!edit);
 
-                delete notesObj[params.id];
-
-                localStorage.setObj("Notes", notesObj);
+                if (edit) {
+                  localStorage.setObj("Notes", notes);
+                }
               }}
             />
+            {!edit && (
+              <ButtonWithIcon
+                className="mt-4"
+                href="/notes"
+                text={locals.Delete}
+                icon={TrashIcon}
+                onClick={() => {
+                  let notesObj = localStorage.getObj("Notes");
+
+                  delete notesObj[params.id];
+
+                  localStorage.setObj("Notes", notesObj);
+                }}
+              />
+            )}
           </div>
         </div>
       )}

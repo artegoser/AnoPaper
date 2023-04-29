@@ -112,7 +112,7 @@ function SettingsSection({ name, children }) {
   );
 }
 
-function NoteNameInput({ value, onChange, preview }) {
+function NoteNameInput({ value, onChange, preview = false }) {
   return (
     <input
       type="text"
@@ -121,13 +121,13 @@ function NoteNameInput({ value, onChange, preview }) {
       }`}
       placeholder={locals.NoteName}
       maxLength={64}
-      value={value}
+      defaultValue={value}
       onChange={onChange}
     />
   );
 }
 
-function NoteTextArea({ value, onChange, preview }) {
+function NoteTextArea({ value, onChange, preview = false }) {
   return (
     <textarea
       className={`
@@ -139,12 +139,15 @@ function NoteTextArea({ value, onChange, preview }) {
       placeholder={locals.NotePlaceholder}
       maxLength={5000}
       onChange={onChange}
-      value={value}
+      defaultValue={value}
     ></textarea>
   );
 }
 
-function NotesAdditionalSettings() {
+function NotesAdditionalSettings({
+  noteText = localStorage.getItem("NoteText"),
+  onClick,
+}) {
   return (
     <>
       {settings.additionalFeatures && (
@@ -157,7 +160,9 @@ function NotesAdditionalSettings() {
                 className="m-1"
                 w="w-full"
                 onClick={() => {
-                  Complete(setText, textUpdate);
+                  let text = Complete(noteText);
+
+                  onClick(text);
                 }}
               />
             )}

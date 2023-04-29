@@ -17,10 +17,10 @@
 
 import { Configuration, OpenAIApi } from "openai";
 
-async function Complete(setText, textUpdate) {
+async function Complete(text) {
   document.body.style.cursor = "wait";
 
-  let initText = localStorage.getItem("NoteText");
+  let initText = text;
 
   const configuration = new Configuration({
     apiKey: settings.openAiKey,
@@ -37,16 +37,9 @@ async function Complete(setText, textUpdate) {
     logprobs: null,
   });
 
-  let totalText = initText + response.data.choices[0].text;
-
-  localStorage.setItem("NoteText", totalText);
-  setText(totalText);
-
-  if (settings.CollabEdit === true) {
-    textUpdate(totalText, true);
-  }
-
   document.body.style.cursor = "default";
+
+  return initText + response.data.choices[0].text;
 }
 
 export { Complete };

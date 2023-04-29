@@ -77,6 +77,7 @@ let ru = {
   PublishNote: "Публичная",
   Menu: "Меню",
   SourceCode: "Исходный код",
+  Edit: "Изменить",
 };
 
 export default ru;
