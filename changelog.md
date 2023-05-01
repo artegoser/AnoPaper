@@ -19,6 +19,7 @@
 
 - [ ] Api for upload photos
 - [ ] Inserting a photo in a note
+- [ ] Cloud sync
 
 # Anopaper v1.1.0 (coming)
 
