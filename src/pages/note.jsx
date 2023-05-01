@@ -17,6 +17,7 @@
 
 import { useParams } from "react-router-dom";
 import {
+  ArchiveBoxArrowDownIcon,
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
   PencilIcon,
@@ -82,7 +83,7 @@ function NotePage() {
             <ButtonWithIcon
               className="mt-4"
               text={edit ? locals.Save : locals.Edit}
-              icon={PencilIcon}
+              icon={edit ? ArchiveBoxArrowDownIcon : PencilIcon}
               onClick={() => {
                 if (edit) {
                   notes[params.id].name = name;
@@ -94,26 +95,29 @@ function NotePage() {
                 setEdit(!edit);
               }}
             />
-            <ButtonWithIcon
-              className="mt-4"
-              text={locals.Publish}
-              icon={ChevronDoubleRightIcon}
-              href={`/notes/publish?local_id=${params.id}`}
-            />
+
             {!edit && (
-              <ButtonWithIcon
-                className="mt-4"
-                href="/notes"
-                text={locals.Delete}
-                icon={TrashIcon}
-                onClick={() => {
-                  let notesObj = localStorage.getObj("Notes");
+              <>
+                <ButtonWithIcon
+                  className="mt-4"
+                  text={locals.Publish}
+                  icon={ChevronDoubleRightIcon}
+                  href={`/notes/publish?local_id=${params.id}`}
+                />
+                <ButtonWithIcon
+                  className="mt-4"
+                  href="/notes"
+                  text={locals.Delete}
+                  icon={TrashIcon}
+                  onClick={() => {
+                    let notesObj = localStorage.getObj("Notes");
 
-                  delete notesObj[params.id];
+                    delete notesObj[params.id];
 
-                  localStorage.setObj("Notes", notesObj);
-                }}
-              />
+                    localStorage.setObj("Notes", notesObj);
+                  }}
+                />
+              </>
             )}
           </div>
         </div>
