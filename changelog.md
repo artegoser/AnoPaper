@@ -15,14 +15,17 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  -->
 
+# Anopaper vSomeday
+
+- [ ] Api for upload photos
+- [ ] Inserting a photo in a note
+
 # Anopaper v1.1.0 (coming)
 
 - [x] Local notes editing (0a0f0f950ae95afb78d3fe71815b351f77f01eb9)
 - [x] Publish local notes (3963e435e8faca9b93b2e481ac799d78ed863f8c)
 - [x] Migration notes storage to mongodb (#3)
 - [ ] Settings for publish notes, such as: delete after reading, number of reads before deleting, adding your own data (name, picture, status in the settings) to the note.
-- [ ] Api for upload photos
-- [ ] Inserting a photo in a note
 - [x] Maintaining statistics on sent notes, the number of notes received, number of deleted notes (#8)
 - [ ] Encrypting notes in the database
 
