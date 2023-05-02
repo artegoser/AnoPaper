@@ -97,15 +97,15 @@ function NotePage() {
               text={edit ? locals.Save : locals.Edit}
               icon={edit ? ArchiveBoxArrowDownIcon : PencilIcon}
               onClick={() => {
-                if (settings.CollabEdit === true) {
-                  textUpdate(notes[params.id].text);
-                  nameUpdate(notes[params.id].name);
-                }
-
                 if (edit) {
                   notes[params.id].name = name;
                   notes[params.id].text = text;
                   localStorage.setObj("Notes", notes);
+                } else {
+                  if (settings.CollabEdit === true) {
+                    textUpdate(notes[params.id].text);
+                    nameUpdate(notes[params.id].name);
+                  }
                 }
 
                 setEdit(!edit);
