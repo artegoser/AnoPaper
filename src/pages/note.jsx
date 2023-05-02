@@ -31,6 +31,7 @@ import {
   NoteTextArea,
   NotesAdditionalSettings,
 } from "../components/settingsInputs";
+import { collab_edit_init, nameUpdate, textUpdate } from "../components/utils";
 
 function NotePage() {
   let params = useParams();
@@ -41,6 +42,8 @@ function NotePage() {
   let [edit, setEdit] = useState(false);
   let [text, setText] = useState(note.text);
   let [name, setName] = useState(note.name);
+
+  collab_edit_init(setName, setText, false);
 
   return (
     <div className="">
@@ -56,17 +59,26 @@ function NotePage() {
           <>
             <NoteNameInput
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                setName(e.target.value);
+                window.nameChanged = e.target.value;
+              }}
             />
             <NoteTextArea
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={(e) => {
+                setText(e.target.value);
+                window.textChanged = e.target.value;
+              }}
             />
             <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-full">
               <NotesAdditionalSettings
                 noteText={text}
-                onClick={(text) => {
+                onClickAIComp={(text) => {
                   setText(text);
+                  if (settings.CollabEdit === true) {
+                    textUpdate(text);
+                  }
                 }}
               />
             </div>
@@ -85,10 +97,14 @@ function NotePage() {
               text={edit ? locals.Save : locals.Edit}
               icon={edit ? ArchiveBoxArrowDownIcon : PencilIcon}
               onClick={() => {
+                if (settings.CollabEdit === true) {
+                  textUpdate(notes[params.id].text);
+                  nameUpdate(notes[params.id].name);
+                }
+
                 if (edit) {
                   notes[params.id].name = name;
                   notes[params.id].text = text;
-
                   localStorage.setObj("Notes", notes);
                 }
 

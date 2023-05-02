@@ -20,21 +20,27 @@ import { timestamp2text } from "./utils";
 
 function Note({ note }) {
   return (
-    <div className="border border-blue-300 rounded-lg p-4">
-      <div className="grid grid-cols-1 lg:grid-cols-2">
-        <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">
-          {note.name}
-        </h2>
-        <div className="justify-self-center lg:justify-self-end">
-          {`${timestamp2text(note.time)} ${
-            note.pub ? `| ${locals.PublicNote}` : `| ${locals.LocalNote}`
-          }`}
+    <>
+      <div className="border border-blue-300 rounded-lg p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          <h2 className="font-medium text-center lg:text-left leading-tight text-4xl mt-0 mb-2">
+            {note.name}
+          </h2>
+          <div className="justify-self-center lg:justify-self-end">
+            {`${timestamp2text(note.time)} ${
+              note.pub ? `| ${locals.PublicNote}` : `| ${locals.LocalNote}`
+            }`}
+          </div>
+        </div>
+        <div className="w-full md break-words">
+          <RenderMarkdown>{note.text}</RenderMarkdown>
         </div>
       </div>
-      <div className="w-full md break-words">
-        <RenderMarkdown>{note.text}</RenderMarkdown>
+      <div className="hidden">
+        <input type="text" id="noteTextArea" />
+        <input type="text" id="noteNameInput" />
       </div>
-    </div>
+    </>
   );
 }
 

@@ -48,4 +48,70 @@ async function getNetLocale(lang, fileName) {
   return (await (await fetch(`localisation/${lang}/${fileName}`)).text()) || "";
 }
 
-export { timestamp2text, reRenderPage, localesProcess, getNetLocale };
+function nameUpdate(val) {
+  socket.emit("nameChanged", {
+    name: val,
+    room: settings.CollabEditPassword,
+  });
+  window.lastSocketUpdate = Date.now();
+}
+
+function textUpdate(val) {
+  socket.emit("textChanged", {
+    text: val,
+    room: settings.CollabEditPassword,
+  });
+  window.lastSocketUpdate = Date.now();
+}
+
+function collab_edit_init(setName, setText, saveToLocalStorage = true) {
+  if (settings.CollabEdit === true) {
+    if (!window.alreadyConnected) {
+      socket.emit("joinRoom", settings.CollabEditPassword);
+      window.alreadyConnected = true;
+      window.lastSocketUpdate = Date.now();
+      window.socketTimeout = 100;
+      window.nameChanged = false;
+      window.textChanged = false;
+
+      setInterval(() => {
+        if (window.nameChanged) {
+          nameUpdate(window.nameChanged);
+          window.nameChanged = false;
+        }
+
+        if (window.textChanged) {
+          textUpdate(window.textChanged);
+          window.textChanged = false;
+        }
+      }, window.socketTimeout);
+    }
+
+    socket.on("textChanged", (data) => {
+      setText(data.text);
+      if (saveToLocalStorage) localStorage.setItem("NoteText", data.text);
+      document.getElementById("noteTextArea").value = data.text;
+    });
+
+    socket.on("nameChanged", (data) => {
+      setName(data.name);
+      if (saveToLocalStorage) localStorage.setItem("NoteName", data.name);
+      document.getElementById("noteNameInput").value = data.name;
+    });
+
+    socket.on("roomJoined", () => {
+      nameUpdate(localStorage.getItem("NoteName"), true);
+      textUpdate(localStorage.getItem("NoteText"), true);
+    });
+  }
+}
+
+export {
+  timestamp2text,
+  reRenderPage,
+  localesProcess,
+  getNetLocale,
+  collab_edit_init,
+  nameUpdate,
+  textUpdate,
+};

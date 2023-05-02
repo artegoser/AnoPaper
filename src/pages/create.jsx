@@ -20,7 +20,11 @@ import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import { CheckBox } from "../components/checkbox";
 import { useState } from "react";
 import RenderMarkdown from "../components/markdown";
-import { timestamp2text } from "../components/utils";
+import {
+  collab_edit_init,
+  timestamp2text,
+  textUpdate,
+} from "../components/utils";
 import rehypeRemark from "rehype-remark/lib";
 import ContentEditable from "react-contenteditable";
 import ReactDOMServer from "react-dom/server";
@@ -35,26 +39,6 @@ import {
   NotesAdditionalSettings,
   SettingsCheckBox,
 } from "../components/settingsInputs";
-
-function nameUpdate(val, force) {
-  if (Date.now() - window.lastSocketUpdate > window.socketTimeout || force) {
-    socket.emit("nameChanged", {
-      name: val,
-      room: settings.CollabEditPassword,
-    });
-    window.lastSocketUpdate = Date.now();
-  }
-}
-
-function textUpdate(val, force) {
-  if (Date.now() - window.lastSocketUpdate > window.socketTimeout || force) {
-    socket.emit("textChanged", {
-      text: val,
-      room: settings.CollabEditPassword,
-    });
-    window.lastSocketUpdate = Date.now();
-  }
-}
 
 function CreateNote() {
   const [preview, setPreview] = useState(false);
@@ -83,29 +67,7 @@ function CreateNote() {
     }
   }
 
-  if (settings.CollabEdit === true) {
-    if (!window.alreadyConnected) {
-      socket.emit("joinRoom", settings.CollabEditPassword);
-      window.alreadyConnected = true;
-      window.lastSocketUpdate = Date.now();
-      window.socketTimeout = 100;
-    }
-
-    socket.on("textChanged", (data) => {
-      setText(data.text);
-      localStorage.setItem("NoteText", data.text);
-    });
-
-    socket.on("nameChanged", (data) => {
-      setName(data.name);
-      localStorage.setItem("NoteName", data.name);
-    });
-
-    socket.on("roomJoined", () => {
-      nameUpdate(localStorage.getItem("NoteName"), true);
-      textUpdate(localStorage.getItem("NoteText"), true);
-    });
-  }
+  collab_edit_init(setName, setText, false);
 
   return (
     <div>
@@ -129,13 +91,7 @@ function CreateNote() {
         onChange={(e) => {
           setName(e.target.value);
           localStorage.setItem("NoteName", e.target.value);
-
-          if (settings.CollabEdit === true) {
-            nameUpdate(e.target.value);
-            setTimeout(() => {
-              nameUpdate(e.target.value);
-            }, window.socketTimeout);
-          }
+          window.nameChanged = e.target.value;
         }}
         preview={preview}
       />
@@ -145,13 +101,7 @@ function CreateNote() {
         onChange={(e) => {
           setText(e.target.value);
           localStorage.setItem("NoteText", e.target.value);
-
-          if (settings.CollabEdit === true) {
-            textUpdate(e.target.value);
-            setTimeout(() => {
-              textUpdate(e.target.value);
-            }, window.socketTimeout);
-          }
+          window.textChanged = e.target.value;
         }}
         preview={preview}
       />
@@ -200,12 +150,12 @@ function CreateNote() {
         </div>
 
         <NotesAdditionalSettings
-          onClick={(text) => {
+          onClickAIComp={(text) => {
             localStorage.setItem("NoteText", text);
             setText(text);
 
             if (settings.CollabEdit === true) {
-              textUpdate(text, true);
+              textUpdate(text);
             }
           }}
         />

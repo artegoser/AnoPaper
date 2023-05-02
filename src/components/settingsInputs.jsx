@@ -123,6 +123,7 @@ function NoteNameInput({ value, onChange, preview = false }) {
       maxLength={64}
       defaultValue={value}
       onChange={onChange}
+      id="noteNameInput"
     />
   );
 }
@@ -147,7 +148,8 @@ function NoteTextArea({ value, onChange, preview = false }) {
 
 function NotesAdditionalSettings({
   noteText = localStorage.getItem("NoteText"),
-  onClick,
+  onClickAIComp,
+  onClickCollabEdit,
 }) {
   return (
     <>
@@ -164,13 +166,14 @@ function NotesAdditionalSettings({
                   let text = await Complete(noteText);
                   document.getElementById("noteTextArea").value = text;
 
-                  onClick(text);
+                  onClickAIComp(text);
                 }}
               />
             )}
             <SettingsCheckBox
               label={locals.CollabEdit}
               settingName="CollabEdit"
+              onClick={onClickCollabEdit}
             />
           </SettingsSection>
         </div>
