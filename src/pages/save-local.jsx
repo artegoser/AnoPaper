@@ -26,12 +26,11 @@ function Save() {
   if (!name || !text) return <Navigate to={`/notes`} replace={true} />;
 
   let notesObj = localStorage.getObj("Notes");
-  let id = Object.keys(notesObj).length;
 
   let time = Date.now();
 
-  notesObj[id] = {
-    id,
+  notesObj[time] = {
+    id: time,
     name,
     text,
     time,
