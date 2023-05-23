@@ -15,6 +15,7 @@
 
 const mongoClient = require("mongodb").MongoClient;
 const sha3 = require("js-sha3").sha3_512;
+const AES = require("crypto-js/aes");
 
 class NotesCore {
   constructor() {}
@@ -33,6 +34,7 @@ class NotesCore {
     try {
       let note = await this.notes.findOne({ _id });
       if (note !== null) await this.incStats("receivedNotes");
+      note = await this.decryptNote(note);
       return note;
     } catch {
       return null;
@@ -61,6 +63,7 @@ class NotesCore {
       note._id = sha3(JSON.stringify(note));
       note.time = Date.now();
       note.pub = true;
+      note = await this.encryptNote(note);
       await this.notes.updateOne(
         { _id: note._id },
         { $set: note },
@@ -71,6 +74,22 @@ class NotesCore {
     } catch {
       return null;
     }
+  }
+
+  async encryptNote(note) {
+    note.name = AES.encrypt(note.name, process.env.ENC_KEY).toString();
+    note.text = AES.encrypt(note.text, process.env.ENC_KEY).toString();
+    return note;
+  }
+
+  async decryptNote(note) {
+    note.name = AES.decrypt(note.name, process.env.ENC_KEY).toString(
+      cryptojs.enc.Utf8
+    );
+    note.text = AES.decrypt(note.text, process.env.ENC_KEY).toString(
+      cryptojs.enc.Utf8
+    );
+    return note;
   }
 
   async incStats(_id) {
