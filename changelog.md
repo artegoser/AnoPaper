@@ -28,7 +28,7 @@
 - [x] Migration notes storage to mongodb (#3)
 - [ ] Settings for publish notes, such as: delete after reading, number of reads before deleting, adding your own data (name, picture, status in the settings) to the note.
 - [x] Maintaining statistics on sent notes, the number of notes received, number of deleted notes (#8)
-- [ ] Encrypting notes in the database
+- [x] Encrypting notes in the database (#26)
 - [x] Local notes ids is ~~incremental~~ `Date.now()` instead of uuidv4 (238af9ad6957f72439a1a39f32662145dd2bdce8)
 
 # AnoPaper v1.0.0
