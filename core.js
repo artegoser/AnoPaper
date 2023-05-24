@@ -16,6 +16,7 @@
 const mongoClient = require("mongodb").MongoClient;
 const sha3 = require("js-sha3").sha3_512;
 const AES = require("crypto-js/aes");
+const cryptojs = require("crypto-js");
 
 class NotesCore {
   constructor() {}
