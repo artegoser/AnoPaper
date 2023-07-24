@@ -21,12 +21,15 @@
 - [ ] Inserting a photo in a note
 - [ ] Cloud sync
 
-# Anopaper v1.1.0 (coming)
+# AnoPaper v1.2.0 (coming)
+
+- [ ] Settings for publish notes, such as: delete after reading, number of reads before deleting, adding your own data (name, picture, status in the settings) to the note.
+
+# Anopaper v1.1.0 (current)
 
 - [x] Local notes editing (0a0f0f950ae95afb78d3fe71815b351f77f01eb9)
 - [x] Publish local notes (3963e435e8faca9b93b2e481ac799d78ed863f8c)
 - [x] Migration notes storage to mongodb (#3)
-- [ ] Settings for publish notes, such as: delete after reading, number of reads before deleting, adding your own data (name, picture, status in the settings) to the note.
 - [x] Maintaining statistics on sent notes, the number of notes received, number of deleted notes (#8)
 - [x] Encrypting notes in the database (#26)
 - [x] Local notes ids is ~~incremental~~ `Date.now()` instead of uuidv4 (238af9ad6957f72439a1a39f32662145dd2bdce8)
