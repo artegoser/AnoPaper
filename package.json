@@ -23,7 +23,7 @@
     "helmet": "^7.0.0",
     "js-sha3": "^0.8.0",
     "mongodb": "^5.7.0",
-    "openai": "^3.3.0",
+    "openai": "^4.0.1",
     "react": "^18.2.0",
     "react-contenteditable": "^3.3.7",
     "react-dom": "^18.2.0",
