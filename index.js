@@ -23,6 +23,7 @@ const path = require("path");
 const { Server } = require("socket.io");
 const rateLimit = require("express-rate-limit");
 const { NotesCore } = require("./core");
+const helmet = require("helmet");
 
 let core = new NotesCore();
 
@@ -81,6 +82,7 @@ io.on("connection", (socket) => {
   });
 });
 
+app.use(helmet());
 app.use(bodyParser.json());
 
 app.post("/publish", limiter, async (req, res) => {
