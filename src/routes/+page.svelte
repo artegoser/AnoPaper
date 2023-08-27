@@ -9,6 +9,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>AnoPaper main page</title>
+</svelte:head>
+
 <h1 class="text-3xl font-bold underline">AnoPaper!</h1>
 
 <Button onClick={handleClick} href="#">{text}</Button>
