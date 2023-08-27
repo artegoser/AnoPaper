@@ -128,3 +128,5 @@ dist
 
 notes/
 .vscode/
+
+.svelte-kit

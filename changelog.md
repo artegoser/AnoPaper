@@ -20,10 +20,15 @@
 - [ ] Api for upload photos
 - [ ] Inserting a photo in a note
 - [ ] Cloud sync
+- [ ] Settings for publish notes, such as: delete after reading, number of reads before deleting, adding your own data (name, picture, status in the settings) to the note.
+
+# AnoPaper v2.0.0
+
+- [ ] Full migration to svelte
 
 # AnoPaper v1.2.0 (coming)
 
-- [ ] Settings for publish notes, such as: delete after reading, number of reads before deleting, adding your own data (name, picture, status in the settings) to the note.
+- [x] Add helmet
 
 # Anopaper v1.1.0 (current)
 
