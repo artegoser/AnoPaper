@@ -1,4 +1,4 @@
-<!--
+/*
  Copyright (c) 2023 artegoser (Artemy Egorov)
 
  This program is free software: you can redistribute it and/or modify
@@ -13,23 +13,49 @@
 
  You should have received a copy of the GNU General Public License
  along with this program. If not, see <https://www.gnu.org/licenses/>.
- -->
+ */
 
-<script>
-	import Button from '$lib/components/buttons/Button.svelte';
+import ru from "./locales/ru";
+import en from "./locales/en";
+import es from "./locales/es";
+import eo from "./locales/eo";
+import ja from "./locales/ja";
+import zh from "./locales/zh";
 
-	let count = 0;
-	let text = `Clicked ${count} ${count === 1 ? 'time' : 'times'}`;
-	function handleClick() {
-		count += 1;
-		text = `Clicked ${count} ${count === 1 ? 'time' : 'times'}`;
-	}
-</script>
+const Locales = {
+  ru,
+  en,
+  es,
+  eo,
+  ja,
+  zh,
+};
 
-<svelte:head>
-	<title>AnoPaper main page</title>
-</svelte:head>
+const langChoices = [
+  {
+    value: "ru-RU",
+    label: "Русский",
+  },
+  {
+    value: "en-US",
+    label: "English (US)",
+  },
+  {
+    value: "es",
+    label: "Español",
+  },
+  {
+    value: "eo",
+    label: "Esperanto",
+  },
+  {
+    value: "ja-JP",
+    label: "日本語",
+  },
+  {
+    value: "zh-CN",
+    label: "中国人",
+  },
+];
 
-<h1 class="text-3xl font-bold underline">AnoPaper!</h1>
-
-<Button onClick={handleClick} href="#">{text}</Button>
+export { Locales, langChoices };

@@ -1,38 +1,66 @@
-# create-svelte
+<!--
+ Copyright (c) 2023 artegoser (Artemy Egorov)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-## Creating a project
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
 
-If you're seeing this, you've probably already done this step. Congrats!
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ -->
+
+![Anopaper logo with text](docs/imgs/Logo%20With%20Name.png)
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fartegoser%2FAnoPaper.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fartegoser%2FAnoPaper?ref=badge_shield)
+
+**AnoPaper is a notes service** that allows you to save notes locally, complete notes using OpenAI API, collaborate on notes with other users and more. The notes supports markdown, MathJax, and GFM syntax.
+
+Running on: <https://anopaper.artegoser.ru/>
+
+## Features
+
+- Save notes locally
+- Edit local notes
+- Publish one-time notes (when read, the note is deleted from the server and saved locally)
+- Use OpenAI API to complete notes (with your own api key)
+- Collaborate with other users on notes
+- Synchronize data across devices
+- Support markdown, MathJax, and GFM syntax
+
+See [changelog](/changelog.md) for more information
+
+![AI completion gif](docs/imgs/ai_completion.gif)
+
+## Local installation
+
+- Setup repository
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
+git clone https://github.com/artegoser/AnoPaper.git
+npm install
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+- Look at .env.example and create your .env file
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- Start server
+
+```bash
+npm start
+```
+
+## Contributing
+
+Contributions are welcome! If you would like to contribute to this project, please create a pull request.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0. See the LICENSE file for more information.
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fartegoser%2FAnoPaper.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fartegoser%2FAnoPaper?ref=badge_large)
