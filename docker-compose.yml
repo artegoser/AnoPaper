@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  anopaper:
+    build: .
+    ports:
+      - "80:80"
+    restart: unless-stopped
