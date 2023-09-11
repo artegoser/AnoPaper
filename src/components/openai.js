@@ -15,16 +15,17 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Configuration, OpenAIApi } from "openai";
+import OpenAi from "openai";
 
 async function Complete(text) {
   document.body.style.cursor = "wait";
 
   let initText = text;
 
-  const configuration = new Configuration({
+  const configuration = new OpenAi({
     apiKey: settings.openAiKey,
   });
+
   const openai = new OpenAIApi(configuration);
   const response = await openai.createCompletion({
     model: "text-davinci-003",
