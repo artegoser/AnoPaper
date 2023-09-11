@@ -31,8 +31,11 @@ jobs:
           command: c
           cwd: "./"
           files: |
-            backend/
-            frontend/dist/
+            index.js
+            core.js
+            note_validator.js
+            package.json
+            dist/
             captain-definition
           outPath: deploy.tar
 
